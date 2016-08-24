@@ -2,6 +2,7 @@ const Zombie = require('zombie');
 Zombie.site = 'http://localhost:3000';
 const browser = new Zombie();
 const screenshots = require('./screenshots');
+const dbHelper = require('./dbHelper');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
 const MainPage = require('../../common/page_objects/main-page');
 
@@ -20,4 +21,5 @@ module.exports = {
   browser,
   googleTagManagerHelper: new GoogleTagManagerHelper(browser),
   mainPage: new MainPage(browser),
+  dbHelper,
 };
