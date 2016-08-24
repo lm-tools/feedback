@@ -1,6 +1,6 @@
 {
-  "name": "hello-world",
-  "repository": "https://github.com/lm-tools/hello-world",
+  "name": "feedback",
+  "repository": "https://github.com/lm-tools/feedback",
   "scripts": {
     "postdeploy": "npm run db-migrate"
   },
