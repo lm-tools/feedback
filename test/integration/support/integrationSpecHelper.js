@@ -5,6 +5,7 @@ const screenshots = require('./screenshots');
 const dbHelper = require('./dbHelper');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
 const MainPage = require('../../common/page_objects/main-page');
+const SurveyPage = require('../../common/page_objects/survey-page');
 
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
 require('../../../bin/www'); // This starts the web server, and ensures it is only
@@ -21,5 +22,6 @@ module.exports = {
   browser,
   googleTagManagerHelper: new GoogleTagManagerHelper(browser),
   mainPage: new MainPage(browser),
+  surveyPage: new SurveyPage(browser),
   dbHelper,
 };
