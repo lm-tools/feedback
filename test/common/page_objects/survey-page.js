@@ -4,8 +4,22 @@ class SurveyPage {
     this.browser = browser;
   }
 
-  visit() {
-    return this.browser.visit('/survey');
+  visit(ref, type) {
+    let url = '/survey';
+
+    if (ref) {
+      url += `/${ref}`;
+    }
+
+    if (type) {
+      url += `/${type}`;
+    }
+
+    return this.browser.visit(`${url}`);
+  }
+
+  getParamValues() {
+    return this.browser.queryAll('[data-test-id^="param-"]').map(el => el.value);
   }
 
   getFieldsNames() {
