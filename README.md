@@ -39,6 +39,20 @@ You can create user and then fetch all the users by executing below commands
     $ curl -X POST http://localhost:3000/users -d '{"name":"some name","surname":"some surname123"}' -H "Content-Type: application/json"
     $ curl http://localhost:3000/users
 
+## Troubleshooting
+
+### Removing migration during development
+
+Remove migration file results with fallowing error
+
+> Error: The migration directory is corrupt, the following files are missing:
+
+Best way to fix it is to delete all the tables in db and redo migrations
+
+    $ NODE_ENV=test node scripts/clear-db.js
+    $ NODE_ENV=test npm run db-migrate
+
+
 [build status image]: https://api.travis-ci.org/lm-tools/feedback.svg
 [ci]: https://travis-ci.org/lm-tools/feedback
 [express]: http://expressjs.com/
