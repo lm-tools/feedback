@@ -1,17 +1,64 @@
 {{<layout}}
 
   {{$applicationContent}}
-    <h1>Survey</h1>
-    <form method="POST">
-      <input class="visually-hidden" data-test-id="param-ref" name="ref" type="text" value="{{ref}}">
-      <input class="visually-hidden" data-test-id="param-type" name="type" type="text" value="{{type}}">
-      <div class="form-group">
-        <label class="form-label" for="name">Your name</label>
-        <input data-test-id="field-name" class="form-control" type="text" name="name" value="{{name}}">
+
+  <h2 class="heading-xlarge">Give Feedback</h2>
+
+  <form method="POST">
+    <input class="visually-hidden" data-test-id="param-ref" name="ref" type="text" value="{{ref}}">
+    <input class="visually-hidden" data-test-id="param-type" name="type" type="text" value="{{type}}">
+
+    <div class="form-group">
+      <input class="form-label-bold" tabindex='-1' data-test-id="question-why-set" type="text" readonly name="questions" value="Why did you set this To-Do for the Claimant?">
+      <p>Select all that apply</p>
+        <fieldset>
+          <label class="block-label" for="why-type-1">
+            <input id="why-type-1" data-test-id="answer-why-set" name="why-set" type="checkbox" value="why-start-goals">
+            To get someone started on job goals
+          </label>
+          <label class="block-label" for="why-type-2">
+            <input id="why-type-2" name="why-set" type="checkbox" value="why-broaden-goals">
+            To broaden job goals
+          </label>
+          <label class="block-label" for="why-type-3">
+            <input id="why-type-3" name="why-set" type="checkbox" value="why-transferable-skills">
+            To look for transferable skills
+          </label>
+          <label class="block-label" for="why-type-4">
+            <input id="why-type-4" name="why-set" type="checkbox" value="why-update-cv">
+            To update their CV
+          </label>
+          <label class="block-label" for="why-type-5">
+            <input id="why-type-5" name="why-set" type="checkbox" value="why-search-terms">
+            To look for alternative search terms for their online job search
+          </label>
+          <label class="block-label" for="why-type-6">
+            <input id="why-type-6" name="why-set" type="checkbox" value="why-other">
+            Other
+          </label>
+        </fieldset>
       </div>
       <div class="form-group">
-        <label class="form-label" for="surname">Your surname</label>
-        <input data-test-id="field-surname" class="form-control" type="text" name="surname" value="{{surname}}">
+        <fieldset class="inline">
+          <input class="form-label-bold" tabindex='-1' data-test-id="question-help-someone-started" type="text" readonly name="questions" value="Did this help the Claimant to get someone started on job goals?">
+          <div class="form-hint text radio-hint"> </div>
+
+          <label for="help-someone-started-yes" class="block-label">
+            <input id="help-someone-started-yes" data-test-id="answer-help-someone-started" type="radio" name="help-someone-started" value="Yes">
+              Yes
+          </label>
+
+          <label for="help-someone-started-no" class="block-label">
+            <input id="help-someone-started-no" type="radio" name="help-someone-started" value="No">
+              No
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="form-group">
+        <input class="form-label-bold" tabindex='-1' data-test-id="question-claimant-feedback" type="text" readonly name="questions" value="What feedback has your Claimant given you about this tool?">
+          <br>
+          <textarea name="claimant-feedback" data-test-id="answer-claimant-feedback" class="form-control-4-4 text" rows="6"></textarea>
       </div>
 
       <input class="button" type="submit" value="Save">

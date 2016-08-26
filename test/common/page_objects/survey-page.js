@@ -22,12 +22,20 @@ class SurveyPage {
     return this.browser.queryAll('[data-test-id^="param-"]').map(el => el.value);
   }
 
-  getFieldsNames() {
-    return this.browser.queryAll('[data-test-id^="field-"]').map(el => el.name);
+  getQuestionValues() {
+    return this.browser.queryAll('[data-test-id^="question-"]').map(el => el.value);
   }
 
-  fill(fields) {
-    _.map(fields, (value, key) => this.browser.fill(`[data-test-id="field-${key}"]`, value));
+  getAnswerFieldNames() {
+    return this.browser.queryAll('[data-test-id^="answer-"]').map(el => el.name);
+  }
+
+  getAnswerFieldValues() {
+    return this.browser.queryAll('[data-test-id^="answer-"]').map(el => el.value);
+  }
+
+  fillAnswers(fields) {
+    _.map(fields, (value, key) => this.browser.fill(`[data-test-id="answer-${key}"]`, value));
   }
 
   submit() {
