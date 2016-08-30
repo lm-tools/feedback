@@ -12,6 +12,15 @@ describe('Explore work you could do survey', () => {
     return AnswersModel.fetchAll().then(results => results.serialize()[0]);
   }
 
+  function aBaseAnswersWith(additionalFields) {
+    return Object.assign({}, {
+      ref: theRef,
+      type: theType,
+      whyTypeOtherReason: '',
+      claimantFeedback: '',
+    }, additionalFields);
+  }
+
   beforeEach(() => dbHelper.cleanDb().then(() =>
     ewycdSurveyPage.visit(theType, theRef)));
 
@@ -48,12 +57,11 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(
-            {
+          expect(result.data).to.eql(aBaseAnswersWith({
               ref: theRef,
               type: theType,
-              whyTypeOtherReason: '',
-            })
+            }
+          ))
         )
     );
 
@@ -72,13 +80,12 @@ describe('Explore work you could do survey', () => {
       return ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(
+          expect(result.data).to.eql(aBaseAnswersWith(
             {
-              ref: theRef,
-              type: theType,
               whyTypes: allWhyTypesValues,
               whyTypeOtherReason: 'Other reason',
-            })
+            }
+          ))
         );
     });
 
@@ -94,11 +101,8 @@ describe('Explore work you could do survey', () => {
       return ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(
+          expect(result.data).to.eql(aBaseAnswersWith(
             {
-              ref: theRef,
-              type: theType,
-              whyTypeOtherReason: '',
               startGoalsHelped: 'true',
               broadenGoalsHelped: 'false',
               transferableSkillsHelped: 'true',
@@ -106,7 +110,7 @@ describe('Explore work you could do survey', () => {
               searchTermsHelped: 'true',
               otherHelped: 'false',
             }
-          )
+          ))
         );
     });
 
@@ -115,14 +119,16 @@ describe('Explore work you could do survey', () => {
       return ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(
-            {
-              ref: theRef,
-              type: theType,
-              whyTypeOtherReason: '',
-              claimantChange: 'true',
-            }
-          )
+          expect(result.data).to.eql(aBaseAnswersWith({ claimantChange: 'true' }))
+        );
+    });
+
+    it('should save "Claimaint feedback" to database', () => {
+      ewycdSurveyPage.fillTextArea('claimantFeedback', 'Some random text');
+      return ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(aBaseAnswersWith({ claimantFeedback: 'Some random text' }))
         );
     });
   });

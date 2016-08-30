@@ -10,6 +10,10 @@ class EWYCDSurveyPage extends BaseSurveyPage {
     this.browser.fill('[data-test-id="why-other-answer"]', value);
   }
 
+  fillTextArea(name, value) {
+    this.browser.fill(`[data-test-id="${name}"]`, value);
+  }
+
   fillYesNoRadios(radios) {
     Object.keys(radios)
       .map(key => ({ k: key, v: radios[key] }))
