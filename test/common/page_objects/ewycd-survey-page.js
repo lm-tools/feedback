@@ -10,6 +10,12 @@ class EWYCDSurveyPage extends BaseSurveyPage {
     this.browser.fill('[data-test-id="why-other-answer"]', value);
   }
 
+  fillDidThisHelpSection(fields) {
+    Object.keys(fields)
+      .map(key => ({ k: key, v: fields[key] }))
+      .forEach(field => this.browser.choose(`[data-test-id="${field.k}-${field.v}"]`));
+  }
+
 }
 
 module.exports = EWYCDSurveyPage;
