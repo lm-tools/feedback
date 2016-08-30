@@ -8,6 +8,10 @@ describe('Explore work you could do survey', () => {
   const theType = 'ewycd';
   const theRef = '12345';
 
+  function fetchFirstSurveyFromDB() {
+    return AnswersModel.fetchAll().then(results => results.serialize()[0]);
+  }
+
   beforeEach(() => dbHelper.cleanDb().then(() =>
     ewycdSurveyPage.visit(theType, theRef)));
 
@@ -41,15 +45,16 @@ describe('Explore work you could do survey', () => {
 
   describe('save', () => {
     it('should save empty form to database', () =>
-      ewycdSurveyPage.submit().then(() =>
-        AnswersModel.fetchAll().then((answersList) =>
-          expect(answersList.serialize()[0].data).to.eql(
+      ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(
             {
               ref: theRef,
               type: theType,
               whyTypeOtherReason: '',
             })
-        ))
+        )
     );
 
     it('should save "why did you set this" section to database', () => {
@@ -64,18 +69,17 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.fillWhyDidYouSetThis(allWhyTypesValues);
       ewycdSurveyPage.fillOtherReason('Other reason');
 
-      return ewycdSurveyPage.submit().then(() =>
-        AnswersModel.fetchAll().then((answersList) =>
-          expect(
-            answersList.serialize()[0].data
-          ).to.eql(
+      return ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(
             {
               ref: theRef,
               type: theType,
               whyTypes: allWhyTypesValues,
               whyTypeOtherReason: 'Other reason',
             })
-        ));
+        );
     });
   });
 });
