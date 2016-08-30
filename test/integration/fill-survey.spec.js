@@ -91,7 +91,7 @@ describe('Explore work you could do survey', () => {
     });
 
     it('should save "Did this help" section to database', () => {
-      ewycdSurveyPage.fillYesNoRadios({
+      ewycdSurveyPage.fillRadios({
         startGoalsHelped: 'yes',
         broadenGoalsHelped: 'no',
         transferableSkillsHelped: 'yes',
@@ -116,7 +116,7 @@ describe('Explore work you could do survey', () => {
     });
 
     it('should save "Did claimant change" to database', () => {
-      ewycdSurveyPage.fillYesNoRadios({ claimantChange: 'yes' });
+      ewycdSurveyPage.fillRadios({ claimantChange: 'yes' });
       return ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
@@ -139,6 +139,15 @@ describe('Explore work you could do survey', () => {
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ agentFeedback: 'Some agent random text' }))
+        );
+    });
+
+    it('should save "Agent rating" to database', () => {
+      ewycdSurveyPage.fillRadios({ rating: 3 });
+      return ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(aBaseAnswersWith({ rating: '3' }))
         );
     });
   });

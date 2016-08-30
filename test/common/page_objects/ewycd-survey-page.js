@@ -14,12 +14,11 @@ class EWYCDSurveyPage extends BaseSurveyPage {
     this.browser.fill(`[data-test-id="${name}"]`, value);
   }
 
-  fillYesNoRadios(radios) {
+  fillRadios(radios) {
     Object.keys(radios)
       .map(key => ({ k: key, v: radios[key] }))
       .forEach(field => this.browser.choose(`[data-test-id="${field.k}-${field.v}"]`));
   }
-
 }
 
 module.exports = EWYCDSurveyPage;
