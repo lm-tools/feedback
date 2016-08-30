@@ -18,6 +18,7 @@ describe('Explore work you could do survey', () => {
       type: theType,
       whyTypeOtherReason: '',
       claimantFeedback: '',
+      agentFeedback: '',
     }, additionalFields);
   }
 
@@ -58,9 +59,9 @@ describe('Explore work you could do survey', () => {
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({
-              ref: theRef,
-              type: theType,
-            }
+            ref: theRef,
+            type: theType,
+          }
           ))
         )
     );
@@ -129,6 +130,15 @@ describe('Explore work you could do survey', () => {
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ claimantFeedback: 'Some random text' }))
+        );
+    });
+
+    it('should save "Agent feedback" to database', () => {
+      ewycdSurveyPage.fillTextArea('agentFeedback', 'Some agent random text');
+      return ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(aBaseAnswersWith({ agentFeedback: 'Some agent random text' }))
         );
     });
   });
