@@ -83,7 +83,7 @@ describe('Explore work you could do survey', () => {
     });
 
     it('should save "Did this help" section to database', () => {
-      ewycdSurveyPage.fillDidThisHelpSection({
+      ewycdSurveyPage.fillYesNoRadios({
         startGoalsHelped: 'yes',
         broadenGoalsHelped: 'no',
         transferableSkillsHelped: 'yes',
@@ -105,6 +105,22 @@ describe('Explore work you could do survey', () => {
               updateCvHelped: 'false',
               searchTermsHelped: 'true',
               otherHelped: 'false',
+            }
+          )
+        );
+    });
+
+    it('should save "Did claimant change" to database', () => {
+      ewycdSurveyPage.fillYesNoRadios({ claimantChange: 'yes' });
+      return ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result =>
+          expect(result.data).to.eql(
+            {
+              ref: theRef,
+              type: theType,
+              whyTypeOtherReason: '',
+              claimantChange: 'true',
             }
           )
         );
