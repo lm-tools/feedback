@@ -1,5 +1,5 @@
 const helper = require('./support/integrationSpecHelper');
-const surveyPage = helper.surveyPage;
+const ewycdSurveyPage = helper.ewycdSurveyPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
@@ -9,7 +9,7 @@ describe('Explore work you could do survey', () => {
   const theRef = '12345';
 
   beforeEach(() => dbHelper.cleanDb().then(() =>
-    surveyPage.visit(theType, theRef)));
+    ewycdSurveyPage.visit(theType, theRef)));
 
   describe('render', () => {
     const expectedSurveyQuestions = [
@@ -27,26 +27,55 @@ describe('Explore work you could do survey', () => {
     ];
 
     it('should render all survey questions', () => {
-      expect(surveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
+      expect(ewycdSurveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
     });
 
     it('should populate hidden "reference id" field ', () => {
-      expect(surveyPage.getRefValue()).to.eql(theRef);
+      expect(ewycdSurveyPage.getRefValue()).to.eql(theRef);
     });
 
     it('should populate hidden "survey type" field ', () => {
-      expect(surveyPage.getTypeValue()).to.eql(theType);
+      expect(ewycdSurveyPage.getTypeValue()).to.eql(theType);
     });
   });
 
   describe('save', () => {
     it('should save empty form to database', () =>
-      surveyPage.submit().then(() =>
+      ewycdSurveyPage.submit().then(() =>
         AnswersModel.fetchAll().then((answersList) =>
-          expect(answersList.serialize()[0].data).to.eql({ ref: theRef, type: theType })
+          expect(answersList.serialize()[0].data).to.eql(
+            {
+              ref: theRef,
+              type: theType,
+              whyTypeOtherReason: '',
+            })
         ))
     );
 
-    it('should save fully filled form to database');
+    it('should save "why did you set this" section to database', () => {
+      const allWhyTypesValues = [
+        'start-goals',
+        'broaden-goals',
+        'transferable-skills',
+        'update-cv',
+        'search-terms',
+        'other',
+      ];
+      ewycdSurveyPage.fillWhyDidYouSetThis(allWhyTypesValues);
+      ewycdSurveyPage.fillOtherReason('Other reason');
+
+      return ewycdSurveyPage.submit().then(() =>
+        AnswersModel.fetchAll().then((answersList) =>
+          expect(
+            answersList.serialize()[0].data
+          ).to.eql(
+            {
+              ref: theRef,
+              type: theType,
+              whyTypes: allWhyTypesValues,
+              whyTypeOtherReason: 'Other reason',
+            })
+        ));
+    });
   });
 });
