@@ -1,51 +1,52 @@
-const _ = require('lodash');
 const helper = require('./support/integrationSpecHelper');
 const surveyPage = helper.surveyPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
 
-describe('Fill survey', () => {
+describe('Explore work you could do survey', () => {
   const theType = 'ewycd';
   const theRef = '12345';
-
-  const expectedSurveyQuestions = [
-    'Why did you set this To-Do for the Claimant?',
-    'Did this help the Claimant to get someone started on job goals?',
-    'What feedback has your Claimant given you about this tool?',
-  ];
-
-  const expectedSurveyAnswers = {
-    'why-set': 'why-start-goals',
-    'help-someone-started': 'Yes',
-    'claimant-feedback': 'some feedback',
-  };
-
-  const expectedSurvey = _.merge(
-    { ref: theRef, type: theType, questions: expectedSurveyQuestions }, expectedSurveyAnswers);
 
   beforeEach(() => dbHelper.cleanDb().then(() =>
     surveyPage.visit(theType, theRef)));
 
-  it('should render all survey questions', () => {
-    expect(surveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
+  describe('render', () => {
+    const expectedSurveyQuestions = [
+      'Why did you set this To-Do for the Claimant?',
+      'Did this help the Claimant to get someone started on job goals?',
+      'Did this help the Claimant to broaden job goals?',
+      'Did this help the Claimant to look for transferable skills?',
+      'Did this help the Claimant to update their CV?',
+      'Did this help the Claimant to look for alternative ' +
+      'search terms for their online job search?',
+      'Did this help the Claimant to do the other thing you wanted them to do?',
+      'Has the Claimant changed how they search or prepare for work after using this tool?',
+      'What feedback has your Claimant given you about this tool?',
+      'What feedback would you like to give about this tool?',
+    ];
+
+    it('should render all survey questions', () => {
+      expect(surveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
+    });
+
+    it('should populate hidden "reference id" field ', () => {
+      expect(surveyPage.getRefValue()).to.eql(theRef);
+    });
+
+    it('should populate hidden "survey type" field ', () => {
+      expect(surveyPage.getTypeValue()).to.eql(theType);
+    });
   });
 
-  it('should render all survey answer fields', () => {
-    expect(surveyPage.getAnswerFieldNames()).to.eql(Object.keys(expectedSurveyAnswers));
-  });
+  describe('save', () => {
+    it('should save empty form to database', () =>
+      surveyPage.submit().then(() =>
+        AnswersModel.fetchAll().then((answersList) =>
+          expect(answersList.serialize()[0].data).to.eql({ ref: theRef, type: theType })
+        ))
+    );
 
-  it('should populate all survey reference fields', () => {
-    expect(surveyPage.getParamValues()).to.eql([theRef, theType]);
-  });
-
-  it('should save filled form to database', () => {
-    // Hmmm need to know the type otherwise it won't find the element... maybe add to
-    // the expectedSurveyAnswers above ?
-    surveyPage.fillAnswers(expectedSurveyAnswers);
-    return surveyPage.submit().then(() =>
-      AnswersModel.fetchAll().then((answersList) =>
-        expect(answersList.serialize()[0].data).to.eql(expectedSurvey)
-      ));
+    it('should save fully filled form to database');
   });
 });

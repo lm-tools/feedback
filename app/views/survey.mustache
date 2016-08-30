@@ -9,57 +9,224 @@
     <input class="visually-hidden" data-test-id="param-type" name="type" type="text" value="{{type}}">
 
     <div class="form-group">
-      <input class="form-label-bold" tabindex='-1' data-test-id="question-why-set" type="text" readonly name="questions" value="Why did you set this To-Do for the Claimant?">
+
+      <h3 class="form-label-bold text" data-test-id="question-why-types">Why did you set this To-Do for the Claimant?</h3>
       <p>Select all that apply</p>
-        <fieldset>
-          <label class="block-label" for="why-type-1">
-            <input id="why-type-1" data-test-id="answer-why-set" name="why-set" type="checkbox" value="why-start-goals">
-            To get someone started on job goals
-          </label>
-          <label class="block-label" for="why-type-2">
-            <input id="why-type-2" name="why-set" type="checkbox" value="why-broaden-goals">
-            To broaden job goals
-          </label>
-          <label class="block-label" for="why-type-3">
-            <input id="why-type-3" name="why-set" type="checkbox" value="why-transferable-skills">
-            To look for transferable skills
-          </label>
-          <label class="block-label" for="why-type-4">
-            <input id="why-type-4" name="why-set" type="checkbox" value="why-update-cv">
-            To update their CV
-          </label>
-          <label class="block-label" for="why-type-5">
-            <input id="why-type-5" name="why-set" type="checkbox" value="why-search-terms">
-            To look for alternative search terms for their online job search
-          </label>
-          <label class="block-label" for="why-type-6">
-            <input id="why-type-6" name="why-set" type="checkbox" value="why-other">
-            Other
-          </label>
-        </fieldset>
-      </div>
-      <div class="form-group">
-        <fieldset class="inline">
-          <input class="form-label-bold" tabindex='-1' data-test-id="question-help-someone-started" type="text" readonly name="questions" value="Did this help the Claimant to get someone started on job goals?">
-          <div class="form-hint text radio-hint"> </div>
 
-          <label for="help-someone-started-yes" class="block-label">
-            <input id="help-someone-started-yes" data-test-id="answer-help-someone-started" type="radio" name="help-someone-started" value="Yes">
-              Yes
-          </label>
+      <fieldset>
 
-          <label for="help-someone-started-no" class="block-label">
-            <input id="help-someone-started-no" type="radio" name="help-someone-started" value="No">
-              No
-          </label>
-        </fieldset>
-      </div>
+        <legend class="visuallyhidden">Why did you set this To-Do for the Claimant?</legend>
 
-      <div class="form-group">
-        <input class="form-label-bold" tabindex='-1' data-test-id="question-claimant-feedback" type="text" readonly name="questions" value="What feedback has your Claimant given you about this tool?">
-          <br>
-          <textarea name="claimant-feedback" data-test-id="answer-claimant-feedback" class="form-control-4-4 text" rows="6"></textarea>
-      </div>
+        <label class="block-label" for="why-type-1">
+          <input id="why-type-1" name="why-types" type="checkbox" value="why-start-goals">
+          To get someone started on job goals
+        </label>
+        <label class="block-label" for="why-type-2">
+          <input id="why-type-2" name="why-types" type="checkbox" value="why-broaden-goals">
+          To broaden job goals
+        </label>
+        <label class="block-label" for="why-type-3">
+          <input id="why-type-3" name="why-types" type="checkbox" value="why-transferable-skills">
+          To look for transferable skills
+        </label>
+        <label class="block-label" for="why-type-4">
+          <input id="why-type-4" name="why-types" type="checkbox" value="why-update-cv">
+          To update their CV
+        </label>
+        <label class="block-label" for="why-type-5">
+          <input id="why-type-5" name="why-types" type="checkbox" value="why-search-terms">
+          To look for alternative search terms for their online job search
+        </label>
+        <label class="block-label" for="why-type-6">
+          <input id="why-type-6" name="why-types" type="checkbox" value="why-other">
+          Other
+        </label>
+
+
+
+        <div class="panel panel-border-narrow js-hidden-just-kidding" id="example_why_other" style="float:left;clear:left">
+          <label for="why_other_answer" class="form-label">
+            Reason
+          </label>
+          <input type="text" id="why_other_answer">
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-q1">
+          Did this help the Claimant to get someone started on job goals?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="a" class="block-label">
+          <input id="a" type="radio" name="q1">
+          Yes
+        </label>
+
+        <label for="b" class="block-label">
+          <input id="b" type="radio" name="q1">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Did this help the Claimant to broaden job goals?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="c" class="block-label">
+          <input id="c" type="radio" name="q2">
+          Yes
+        </label>
+
+        <label for="d" class="block-label">
+          <input id="d" type="radio" name="q2">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Did this help the Claimant to look for transferable skills?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="e" class="block-label">
+          <input id="e" type="radio" name="q3">
+          Yes
+        </label>
+
+        <label for="f" class="block-label">
+          <input id="f" type="radio" name="q3">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Did this help the Claimant to update their CV?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="q" class="block-label">
+          <input id="q" type="radio" name="q6">
+          Yes
+        </label>
+
+        <label for="r" class="block-label">
+          <input id="r" type="radio" name="q6">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Did this help the Claimant to look for alternative search terms for their online job search?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="s" class="block-label">
+          <input id="s" type="radio" name="q7">
+          Yes
+        </label>
+
+        <label for="t" class="block-label">
+          <input id="t" type="radio" name="q7">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Did this help the Claimant to do the other thing you wanted them to do?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="2b" class="block-label">
+          <input id="2b" type="radio" name="q6">
+          Yes
+        </label>
+
+        <label for="2c" class="block-label">
+          <input id="2c" type="radio" name="q6">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-??">
+          Has the Claimant changed how they search or prepare for work after using this tool?
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        <label for="z" class="block-label">
+          <input id="z" type="radio" name="q6">
+          Yes
+        </label>
+
+        <label for="2a" class="block-label">
+          <input id="2a" type="radio" name="q6">
+          No
+        </label>
+
+      </fieldset>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label-bold" for="job-title" data-test-id="question-??">What feedback has your Claimant given you about this tool?</label>
+      <br>
+      <textarea class="form-control-4-4 text " rows="6"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label-bold" for="job-title" data-test-id="question-??">What feedback would you like to give about this tool?</label>
+      <br>
+      <textarea class="form-control-4-4 text " rows="6"></textarea>
+
+    </div>
+
+
+    <!--<div class="form-group">-->
+      <!--<fieldset class="inline">-->
+        <!--<legend class="form-label-bold text">-->
+          <!--Please rate Explore Work You Could Do?-->
+        <!--</legend>-->
+        <!--<div class="form-hint text radio-hint"> </div>-->
+        <!--<div class="form-error validation-message">Literally stars *****</div>-->
+
+      <!--</fieldset>-->
+    <!--</div>-->
 
       <input class="button" type="submit" value="Save">
     </form>
