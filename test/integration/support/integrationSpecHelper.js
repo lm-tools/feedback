@@ -4,7 +4,6 @@ const browser = new Zombie();
 const screenshots = require('./screenshots');
 const dbHelper = require('./dbHelper');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
-const MainPage = require('../../common/page_objects/main-page');
 const EWYCDSurveyPage = require('../../common/page_objects/ewycd-survey-page');
 const ConfirmationPage = require('../../common/page_objects/confirmation-page');
 const basePath = process.env.EXPRESS_BASE_PATH || '';
@@ -22,7 +21,6 @@ afterEach(function () {
 module.exports = {
   browser,
   googleTagManagerHelper: new GoogleTagManagerHelper(browser),
-  mainPage: new MainPage(browser, basePath),
   ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
   dbHelper,
