@@ -7,7 +7,7 @@ const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-man
 const MainPage = require('../../common/page_objects/main-page');
 const EWYCDSurveyPage = require('../../common/page_objects/ewycd-survey-page');
 const ConfirmationPage = require('../../common/page_objects/confirmation-page');
-
+const basePath = process.env.EXPRESS_BASE_PATH || '';
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
 require('../../../bin/www'); // This starts the web server, and ensures it is only
                           // started once. It is a misuse of "require", and
@@ -22,8 +22,8 @@ afterEach(function () {
 module.exports = {
   browser,
   googleTagManagerHelper: new GoogleTagManagerHelper(browser),
-  mainPage: new MainPage(browser),
-  ewycdSurveyPage: new EWYCDSurveyPage(browser),
+  mainPage: new MainPage(browser, basePath),
+  ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
   dbHelper,
 };

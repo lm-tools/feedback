@@ -8,7 +8,7 @@
     "watch": "gulp watch",
     "lint": "eslint .",
     "pretest": "npm-shrinkwrap-check -3 && eslint . && npm run compile && NODE_ENV=test npm run db-migrate",
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha && echo 'Tests against app mounted at /feedback:' && EXPRESS_BASE_PATH=/feedback NODE_ENV=test mocha",
     "db-migrate": "knex migrate:latest --knexfile db/knexfile.js",
     "heroku-postbuild": "npm run compile",
     "create-migration": "knex migrate:make --knexfile db/knexfile.js $MIGRATION"

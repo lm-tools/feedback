@@ -2,8 +2,8 @@ const BaseSurveyPage = require('./survey-page');
 
 class EWYCDSurveyPage extends BaseSurveyPage {
 
-  constructor(browser) {
-    super(browser);
+  constructor(browser, basePath) {
+    super(browser, basePath);
     this.START_GOALS_HELPED_PANEL = '#startGoalsHelped-panel';
     this.BROADEN_GOALS_HELPED_PANEL = '#broadenGoalsHelped-panel';
     this.TRANSFERABLE_SKILLS_HELPED_PANEL = '#transferableSkillsHelped-panel';
