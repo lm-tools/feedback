@@ -51,6 +51,57 @@ describe('Explore work you could do survey', () => {
     it('should populate hidden "survey type" field ', () => {
       expect(ewycdSurveyPage.getTypeValue()).to.eql(theType);
     });
+
+    [
+      {
+        question: 'Did this helped with start goals',
+        type: 'start-goals',
+        selector: ewycdSurveyPage.START_GOALS_HELPED_PANEL,
+      },
+      {
+        question: 'Did this helped with broaden goals',
+        type: 'broaden-goals',
+        selector: ewycdSurveyPage.BROADEN_GOALS_HELPED_PANEL,
+      },
+      {
+        question: 'Did this helped with transferable skills',
+        type: 'transferable-skills',
+        selector: ewycdSurveyPage.TRANSFERABLE_SKILLS_HELPED_PANEL,
+      },
+      {
+        question: 'Did this helped with update civ',
+        type: 'update-cv',
+        selector: ewycdSurveyPage.UPDATE_CV_PANEL_SELECTOR,
+      },
+      {
+        question: 'Did this helped with search terms',
+        type: 'search-terms',
+        selector: ewycdSurveyPage.SEARCH_TERMS_HELPED_PANEL,
+      },
+      {
+        question: 'Did this helped with other thing',
+        type: 'other',
+        selector: ewycdSurveyPage.OTHER_HELPED_PANEL,
+      },
+    ].forEach(s => {
+      it(`should hide "${s.question}" question by default`, () =>
+        expect(ewycdSurveyPage.isElementHidden(s.selector)).to.eql(true)
+      );
+
+      it(`should show "${s.question}" when "${s.type}" answer clicked`, () => {
+        ewycdSurveyPage.fillWhyDidYouSetThis([s.type]);
+        return expect(ewycdSurveyPage.isElementHidden(s.selector)).to.eql(false);
+      });
+    });
+    it('should hide "Other reason" by default', () =>
+      expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL)).to.eql(true)
+    );
+
+    it('should show "Other reason" when "Other" answer clicked', () => {
+      ewycdSurveyPage.fillWhyDidYouSetThis(['other']);
+      return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
+        .to.eql(false);
+    });
   });
 
   describe('save', () => {
