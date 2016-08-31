@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const indexController = require('./controllers/index-controller');
 const surveyController = require('./controllers/survey-controller');
+const confirmationController = require('./controllers/confirmation-controller');
 const i18n = require('./middleware/i18n');
 const healthCheckController = require('./controllers/health-check-controller');
 
@@ -64,6 +65,7 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 
 app.use(`${basePath}/`, indexController);
 app.use(`${basePath}/survey`, surveyController);
+app.use(`${basePath}/confirmation`, confirmationController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
