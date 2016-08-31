@@ -1,5 +1,6 @@
 const helper = require('./support/integrationSpecHelper');
 const ewycdSurveyPage = helper.ewycdSurveyPage;
+const confirmationPage = helper.confirmationPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
@@ -201,5 +202,10 @@ describe('Explore work you could do survey', () => {
           expect(result.data).to.eql(aBaseAnswersWith({ rating: '3' }))
         );
     });
+
+    it('should show confirmation page', () =>
+      ewycdSurveyPage.submit()
+        .then(() => expect(confirmationPage.getPageId()).to.eql(confirmationPage.PAGE_ID))
+    );
   });
 });
