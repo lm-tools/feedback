@@ -5,7 +5,7 @@ class SurveyPage {
   }
 
   visit(ref, type) {
-    let url = `${this.basePath}/survey`;
+    let url = `${this.basePath}`;
 
     if (ref) {
       url += `/${ref}`;

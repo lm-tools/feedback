@@ -5,7 +5,6 @@ const logger = require('./../logger');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const indexController = require('./controllers/index-controller');
 const surveyController = require('./controllers/survey-controller');
 const confirmationController = require('./controllers/confirmation-controller');
 const i18n = require('./middleware/i18n');
@@ -63,8 +62,7 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
   'vendor', 'govuk_template_mustache_inheritance', 'assets')));
 
 
-app.use(`${basePath}/`, indexController);
-app.use(`${basePath}/survey`, surveyController);
+app.use(`${basePath}/`, surveyController);
 app.use(`${basePath}/confirmation`, confirmationController);
 
 // catch 404 and forward to error handler

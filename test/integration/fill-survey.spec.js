@@ -1,6 +1,7 @@
 const helper = require('./support/integrationSpecHelper');
 const ewycdSurveyPage = helper.ewycdSurveyPage;
 const confirmationPage = helper.confirmationPage;
+const googleTagManagerHelper = helper.googleTagManagerHelper;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
@@ -103,6 +104,14 @@ describe('Explore work you could do survey', () => {
       return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
         .to.eql(false);
     });
+  });
+
+  describe('analytics', () => {
+    it('should contain valid google tag manager data', () =>
+      ewycdSurveyPage.visit(theType, theRef).then(() =>
+        expect(googleTagManagerHelper.getUserVariable()).to.equal('set-me-in-controller')
+      )
+    );
   });
 
   describe('save', () => {
