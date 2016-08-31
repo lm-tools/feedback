@@ -1,4 +1,3 @@
-const _ = require('lodash');
 class SurveyPage {
   constructor(browser) {
     this.browser = browser;
@@ -18,16 +17,15 @@ class SurveyPage {
     return this.browser.visit(`${url}`);
   }
 
-  getParamValues() {
-    return this.browser.queryAll('[data-test-id^="param-"]').map(el => el.value);
+  getRefValue() {
+    return this.browser.query('[data-test-id="param-ref"]').value;
+  }
+  getTypeValue() {
+    return this.browser.query('[data-test-id="param-type"]').value;
   }
 
-  getFieldsNames() {
-    return this.browser.queryAll('[data-test-id^="field-"]').map(el => el.name);
-  }
-
-  fill(fields) {
-    _.map(fields, (value, key) => this.browser.fill(`[data-test-id="field-${key}"]`, value));
+  getQuestionValues() {
+    return this.browser.queryAll('[data-test-id^="question-"]').map(el => el.textContent.trim());
   }
 
   submit() {
