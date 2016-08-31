@@ -18,33 +18,33 @@
         <legend class="visuallyhidden">Why did you set this To-Do for the Claimant?</legend>
 
         <label class="block-label" for="why-type-start-goals">
-          <input id="why-type-start-goals" data-test-id="why-type-start-goals" name="whyTypes" type="checkbox" value="start-goals">
+          <input id="why-type-start-goals" data-test-id="why-type-start-goals" name="whyTypes" type="checkbox" value="start-goals" data-toggle-visibility-for="#startGoalsHelped-panel">
           To get someone started on job goals
         </label>
         <label class="block-label" for="why-type-broaden-goals">
-          <input id="why-type-broaden-goals" data-test-id="why-type-broaden-goals" name="whyTypes" type="checkbox" value="broaden-goals">
+          <input id="why-type-broaden-goals" data-test-id="why-type-broaden-goals" name="whyTypes" type="checkbox" value="broaden-goals" data-toggle-visibility-for="#broadenGoalsHelped-panel">
           To broaden job goals
         </label>
         <label class="block-label" for="why-type-transferable-skills">
-          <input id="why-type-transferable-skills" data-test-id="why-type-transferable-skills" name="whyTypes" type="checkbox" value="transferable-skills">
+          <input id="why-type-transferable-skills" data-test-id="why-type-transferable-skills" name="whyTypes" type="checkbox" value="transferable-skills" data-toggle-visibility-for="#transferableSkillsHelped-panel">
           To look for transferable skills
         </label>
         <label class="block-label" for="why-type-update-cv">
-          <input id="why-type-update-cv" data-test-id="why-type-update-cv" name="whyTypes" type="checkbox" value="update-cv">
+          <input id="why-type-update-cv" data-test-id="why-type-update-cv" name="whyTypes" type="checkbox" value="update-cv" data-toggle-visibility-for="#updateCvHelped-panel">
           To update their CV
         </label>
         <label class="block-label" for="why-type-search-terms">
-          <input id="why-type-search-terms" data-test-id="why-type-search-terms" name="whyTypes" type="checkbox" value="search-terms">
+          <input id="why-type-search-terms" data-test-id="why-type-search-terms" name="whyTypes" type="checkbox" value="search-terms" data-toggle-visibility-for="#searchTermsHelped-panel">
           To look for alternative search terms for their online job search
         </label>
         <label class="block-label" for="why-type-other">
-          <input id="why-type-other" data-test-id="why-type-other" name="whyTypes" type="checkbox" value="other">
+          <input id="why-type-other" data-test-id="why-type-other" name="whyTypes" type="checkbox" value="other" data-toggle-visibility-for=".other-type">
           Other
         </label>
 
 
 
-        <div class="panel panel-border-narrow js-hidden-just-kidding" id="example_why_other" style="float:left;clear:left">
+        <div class="panel panel-border-narrow js-hidden other-type" data-test-id="other-reason-panel">
           <label for="why_other_answer" class="form-label">
             Reason
           </label>
@@ -54,7 +54,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden" id="startGoalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-startGoalsHelped">
           Did this help the Claimant to get someone started on job goals?
@@ -75,7 +75,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden" id="broadenGoalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-broadenGoalsHelped">
           Did this help the Claimant to broaden job goals?
@@ -96,7 +96,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden" id="transferableSkillsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-transferableSkillsHelped">
           Did this help the Claimant to look for transferable skills?
@@ -117,7 +117,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden" id="updateCvHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-updateCvHelped">
           Did this help the Claimant to update their CV?
@@ -138,7 +138,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden" id="searchTermsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-searchTermsHelped">
           Did this help the Claimant to look for alternative search terms for their online job search?
@@ -159,7 +159,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
+    <div class="form-group js-hidden other-type" id="otherHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-otherHelped">
           Did this help the Claimant to do the other thing you wanted them to do?
