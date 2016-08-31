@@ -1,10 +1,11 @@
 class SurveyPage {
-  constructor(browser) {
+  constructor(browser, basePath) {
     this.browser = browser;
+    this.basePath = basePath;
   }
 
   visit(ref, type) {
-    let url = '/survey';
+    let url = `${this.basePath}/survey`;
 
     if (ref) {
       url += `/${ref}`;
