@@ -16,8 +16,6 @@ describe('Explore work you could do survey', () => {
 
   function aBaseAnswersWith(additionalFields) {
     return Object.assign({}, {
-      ref: theRef,
-      type: theType,
       whyTypeOtherReason: '',
       claimantFeedback: '',
       agentFeedback: '',
@@ -44,14 +42,6 @@ describe('Explore work you could do survey', () => {
 
     it('should render all survey questions', () => {
       expect(ewycdSurveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
-    });
-
-    it('should populate hidden "reference id" field ', () => {
-      expect(ewycdSurveyPage.getRefValue()).to.eql(theRef);
-    });
-
-    it('should populate hidden "survey type" field ', () => {
-      expect(ewycdSurveyPage.getTypeValue()).to.eql(theType);
     });
 
     [
@@ -119,12 +109,17 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(aBaseAnswersWith({
-            ref: theRef,
-            type: theType,
-          }
-          ))
+          expect(result.data).to.eql(aBaseAnswersWith({}))
         )
+    );
+
+    it('should save refId and survey type', () =>
+      ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result => {
+          expect(result.ref).to.eql(theRef);
+          expect(result.survey).to.eql(theType);
+        })
     );
 
     it('should save "why did you set this" section to database', () => {
