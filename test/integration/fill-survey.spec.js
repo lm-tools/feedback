@@ -1,6 +1,7 @@
 const helper = require('./support/integrationSpecHelper');
 const ewycdSurveyPage = helper.ewycdSurveyPage;
 const confirmationPage = helper.confirmationPage;
+const errorPage = helper.errorPage;
 const googleTagManagerHelper = helper.googleTagManagerHelper;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
@@ -94,6 +95,15 @@ describe('Explore work you could do survey', () => {
       return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
         .to.eql(false);
     });
+
+    it('should display error if user has already filled survey', () =>
+      ewycdSurveyPage.submit()
+        .then(() => ewycdSurveyPage.visit(theType, theRef))
+        .then(() => {
+          expect(confirmationPage.getPageId()).to.eql(errorPage.PAGE_ID);
+          expect(errorPage.getMessage()).to.eql('You’ve already given feedback.');
+        })
+    );
   });
 
   describe('analytics', () => {

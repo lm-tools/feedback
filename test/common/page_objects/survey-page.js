@@ -4,18 +4,8 @@ class SurveyPage {
     this.basePath = basePath;
   }
 
-  visit(ref, type) {
-    let url = `${this.basePath}`;
-
-    if (ref) {
-      url += `/${ref}`;
-    }
-
-    if (type) {
-      url += `/${type}`;
-    }
-
-    return this.browser.visit(`${url}`);
+  visit(type, ref) {
+    return this.browser.visit(`${this.basePath}/${type}/${ref}`);
   }
 
   getRefValue() {
