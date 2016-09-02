@@ -3,6 +3,9 @@
     "title": "Welcome from i18n"
   },
   "error": {
-    "already-given": "You’ve already given feedback."
+    "404": "Page not found",
+    "500": "We're experiencing technical problems.",
+    "already-given": "You’ve already given feedback.",
+    "undefined": "error.undefined"
   }
 }

@@ -7,11 +7,12 @@ const bodyParser = require('body-parser');
 
 const surveyController = require('./controllers/survey-controller');
 const confirmationController = require('./controllers/confirmation-controller');
-const i18n = require('./middleware/i18n');
+const i18nMiddleware = require('./middleware/i18n');
+const i18n = require('i18n');
 const healthCheckController = require('./controllers/health-check-controller');
 
 const app = express();
-i18n(app);
+i18nMiddleware(app);
 
 // view engine setup
 const cons = require('consolidate');
@@ -65,6 +66,11 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 app.use(`${basePath}/`, surveyController);
 app.use(`${basePath}/confirmation`, confirmationController);
 
+if (app.get('env') === 'development' || app.get('env') === 'test') {
+  // eslint-disable-next-line global-require
+  app.use(`${basePath}/test/error`, require('./controllers/test-controller'));
+}
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -74,26 +80,20 @@ app.use((req, res, next) => {
 
 // error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use((err, req, res) => {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err,
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {},
-  });
+/* eslint-disable no-underscore-dangle */
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  if (app.get('env') !== 'test') {
+    // eslint-disable-next-line no-console
+    console.error(err.stack);
+  }
+  const status = err.status || 500;
+  res.status(status);
+  const model = { message: i18n.__(`error.${status}`), pageId: 'error-page' };
+  if (app.get('env') === 'development') {
+    model.error = err;
+  }
+  res.render('error', model);
 });
 
 
