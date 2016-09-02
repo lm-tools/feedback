@@ -3,7 +3,7 @@ Zombie.site = 'http://localhost:3000';
 const browser = new Zombie();
 const screenshots = require('./screenshots');
 const dbHelper = require('./dbHelper');
-const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
+const GlobalPage = require('../../common/page_objects/global-page');
 const EWYCDSurveyPage = require('../../common/page_objects/ewycd-survey-page');
 const ConfirmationPage = require('../../common/page_objects/confirmation-page');
 const ErrorPage = require('../../common/page_objects/error-page');
@@ -21,7 +21,7 @@ afterEach(function () {
 
 module.exports = {
   browser,
-  googleTagManagerHelper: new GoogleTagManagerHelper(browser),
+  globalPage: new GlobalPage(browser),
   ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
   errorPage: new ErrorPage(browser),

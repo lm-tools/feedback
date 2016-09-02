@@ -5,9 +5,6 @@ class ConfirmationPage {
     this.PAGE_ID = 'confirmation';
   }
 
-  getPageId() {
-    return this.browser.query('meta[name="pageId"]').content;
-  }
 }
 
 module.exports = ConfirmationPage;

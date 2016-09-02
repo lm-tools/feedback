@@ -2,7 +2,7 @@ const helper = require('./support/integrationSpecHelper');
 const ewycdSurveyPage = helper.ewycdSurveyPage;
 const confirmationPage = helper.confirmationPage;
 const errorPage = helper.errorPage;
-const googleTagManagerHelper = helper.googleTagManagerHelper;
+const globalPage = helper.globalPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
@@ -100,7 +100,7 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.submit()
         .then(() => ewycdSurveyPage.visit(theType, theRef))
         .then(() => {
-          expect(confirmationPage.getPageId()).to.eql(errorPage.PAGE_ID);
+          expect(globalPage.getPageId()).to.eql(errorPage.PAGE_ID);
           expect(errorPage.getMessage()).to.eql('You’ve already given feedback.');
         })
     );
@@ -109,7 +109,7 @@ describe('Explore work you could do survey', () => {
   describe('analytics', () => {
     it('should contain valid google tag manager data', () =>
       ewycdSurveyPage.visit(theType, theRef).then(() =>
-        expect(googleTagManagerHelper.getUserVariable()).to.equal('set-me-in-controller')
+        expect(globalPage.getGoogleAnalyticsUserVariable()).to.equal('set-me-in-controller')
       )
     );
   });
@@ -219,7 +219,7 @@ describe('Explore work you could do survey', () => {
 
     it('should show confirmation page', () =>
       ewycdSurveyPage.submit()
-        .then(() => expect(confirmationPage.getPageId()).to.eql(confirmationPage.PAGE_ID))
+        .then(() => expect(globalPage.getPageId()).to.eql(confirmationPage.PAGE_ID))
     );
   });
 });
