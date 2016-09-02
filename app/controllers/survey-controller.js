@@ -19,7 +19,7 @@ router.get('/:type/:ref', (req, res) => {
 });
 
 router.get('/:type/:ref/error/:errorKey', (req, res) => {
-  res.render('error-notification', {
+  res.render('error', {
     pageId: 'error-page',
     message: i18n.__(`error.${req.params.errorKey}`),
   });

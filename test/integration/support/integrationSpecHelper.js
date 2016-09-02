@@ -21,7 +21,7 @@ afterEach(function () {
 
 module.exports = {
   browser,
-  globalPage: new GlobalPage(browser),
+  globalPage: new GlobalPage(browser, basePath),
   ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
   errorPage: new ErrorPage(browser),
