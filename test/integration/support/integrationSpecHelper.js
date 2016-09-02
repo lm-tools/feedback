@@ -6,6 +6,7 @@ const dbHelper = require('./dbHelper');
 const GoogleTagManagerHelper = require('../../common/page_objects/google-tag-manager-helper');
 const EWYCDSurveyPage = require('../../common/page_objects/ewycd-survey-page');
 const ConfirmationPage = require('../../common/page_objects/confirmation-page');
+const ErrorPage = require('../../common/page_objects/error-page');
 const basePath = process.env.EXPRESS_BASE_PATH || '';
 process.env.GOOGLE_TAG_MANAGER_ID = 'fake-id';
 require('../../../bin/www'); // This starts the web server, and ensures it is only
@@ -23,5 +24,6 @@ module.exports = {
   googleTagManagerHelper: new GoogleTagManagerHelper(browser),
   ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
+  errorPage: new ErrorPage(browser),
   dbHelper,
 };

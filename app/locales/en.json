@@ -1,5 +1,8 @@
 {
   "main": {
     "title": "Welcome from i18n"
+  },
+  "error": {
+    "already-given": "You’ve already given feedback."
   }
 }
