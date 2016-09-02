@@ -8,13 +8,6 @@ class SurveyPage {
     return this.browser.visit(`${this.basePath}/${type}/${ref}`);
   }
 
-  getRefValue() {
-    return this.browser.query('[data-test-id="param-ref"]').value;
-  }
-  getTypeValue() {
-    return this.browser.query('[data-test-id="param-type"]').value;
-  }
-
   getQuestionValues() {
     return this.browser.queryAll('[data-test-id^="question-"]').map(el => el.textContent.trim());
   }
