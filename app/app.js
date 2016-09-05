@@ -10,6 +10,7 @@ const confirmationController = require('./controllers/confirmation-controller');
 const i18nMiddleware = require('./middleware/i18n');
 const i18n = require('i18n');
 const healthCheckController = require('./controllers/health-check-controller');
+const Routes = require('./routes');
 
 const app = express();
 i18nMiddleware(app);
@@ -24,6 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 const basePath = app.locals.basePath = process.env.EXPRESS_BASE_PATH || '';
 const assetPath = `${basePath}/`;
 const googleTagManagerId = process.env.GOOGLE_TAG_MANAGER_ID;
+const routes = new Routes(basePath);
 
 app.use('/health_check', healthCheckController);
 app.use(`${basePath}/health_check`, healthCheckController);
@@ -63,8 +65,8 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
   'vendor', 'govuk_template_mustache_inheritance', 'assets')));
 
 
-app.use(`${basePath}/`, surveyController);
-app.use(`${basePath}/confirmation`, confirmationController);
+app.use(`${basePath}`, surveyController(routes));
+app.use(`${basePath}/confirmation`, confirmationController(routes));
 
 if (app.get('env') === 'development' || app.get('env') === 'test') {
   // eslint-disable-next-line global-require
