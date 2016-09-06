@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const AnswersModel = require('../models/answers-model');
+const SurveyModel = require('../models/survey-model');
 const i18n = require('i18n');
 /* eslint-disable no-underscore-dangle */
 
@@ -12,9 +13,12 @@ router.get('/:type/:ref', (req, res) => {
         res.redirect(
           `${req.app.locals.basePath}/${req.params.type}/${req.params.ref}/error/already-given`
         );
-      } else {
-        res.render('survey', { pageId: 'survey' });
       }
+      new SurveyModel({ type: req.params.type })
+        .fetch()
+        .then(survey => {
+          res.render('survey', { pageId: 'survey', labels: survey.get('definition').labels });
+        });
     });
 });
 

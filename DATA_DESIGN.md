@@ -1,25 +1,15 @@
-# Api
+# Data design
 
-Application expose api endpoints in order to fetch gathered answers for the survey questions.
+In order to retrieve data you need to execute `$ scripts/fetch-survey.js <surveyId>`
 
-## Authentication
+## Fetch survey script
 
-Api requires `access_token` to be present in order to allow access, i.e.
-
-    $ curl http://localhost/api/survey/:id?access_token=<some_secret_access_token>
-
-## GET /api/survey/:surveyId
-
-Retrieves:
+Return json data:
 
 * `answers` - all the answers for given survey
 * `options` - predefined answers for some of the questions, if the `answer` doesn't exist here,
 it's a free text field
 * `labels` - all the copy for `options` and `answers` keys
-
-Request:
-
-    $ curl http://localhost/api/survey/ewycd_1?access_token=<some_secret_access_token>
 
 Response:
 

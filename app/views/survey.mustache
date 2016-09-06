@@ -8,43 +8,43 @@
 
     <div class="form-group">
 
-      <h3 class="form-label-bold text" data-test-id="question-why-types">Why did you set this To-Do for the Claimant?</h3>
+      <h3 class="form-label-bold text" data-test-id="question-why-types">{{labels.whyTypes}}</h3>
       <p>Select all that apply</p>
 
       <fieldset>
 
-        <legend class="visuallyhidden">Why did you set this To-Do for the Claimant?</legend>
+        <legend class="visuallyhidden">{{labels.whyTypes}}</legend>
 
         <label class="block-label" for="why-type-start-goals">
           <input id="why-type-start-goals" data-test-id="why-type-start-goals" name="whyTypes" type="checkbox" value="start-goals" data-toggle-visibility-for="#startGoalsHelped-panel">
-          To get someone started on job goals
+          {{labels.whyTypes-start-goals}}
         </label>
         <label class="block-label" for="why-type-broaden-goals">
           <input id="why-type-broaden-goals" data-test-id="why-type-broaden-goals" name="whyTypes" type="checkbox" value="broaden-goals" data-toggle-visibility-for="#broadenGoalsHelped-panel">
-          To broaden job goals
+          {{labels.whyTypes-broaden-goals}}
         </label>
         <label class="block-label" for="why-type-transferable-skills">
           <input id="why-type-transferable-skills" data-test-id="why-type-transferable-skills" name="whyTypes" type="checkbox" value="transferable-skills" data-toggle-visibility-for="#transferableSkillsHelped-panel">
-          To look for transferable skills
+          {{labels.whyTypes-transferable-skills}}
         </label>
         <label class="block-label" for="why-type-update-cv">
           <input id="why-type-update-cv" data-test-id="why-type-update-cv" name="whyTypes" type="checkbox" value="update-cv" data-toggle-visibility-for="#updateCvHelped-panel">
-          To update their CV
+          {{labels.whyTypes-update-cv}}
         </label>
         <label class="block-label" for="why-type-search-terms">
           <input id="why-type-search-terms" data-test-id="why-type-search-terms" name="whyTypes" type="checkbox" value="search-terms" data-toggle-visibility-for="#searchTermsHelped-panel">
-          To look for alternative search terms for their online job search
+          {{labels.whyTypes-search-terms}}
         </label>
         <label class="block-label" for="why-type-other">
           <input id="why-type-other" data-test-id="why-type-other" name="whyTypes" type="checkbox" value="other" data-toggle-visibility-for=".other-type">
-          Other
+          {{labels.whyTypes-other}}
         </label>
 
 
 
         <div class="panel panel-border-narrow js-hidden other-type" data-test-id="other-reason-panel">
           <label for="why_other_answer" class="form-label">
-            Reason
+            {{labels.whyTypes-other-reason}}
           </label>
           <input type="text" id="why_other_answer" data-test-id="why-other-answer" name="whyTypeOtherReason">
         </div>
@@ -55,19 +55,19 @@
     <div class="form-group js-hidden" id="startGoalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-startGoalsHelped">
-          Did this help the Claimant to get someone started on job goals?
+          {{labels.startGoalsHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="startGoalsHelped-yes" class="block-label">
           <input id="startGoalsHelped-yes" data-test-id="startGoalsHelped-yes" type="radio" name="startGoalsHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="startGoalsHelped-no" class="block-label">
           <input id="startGoalsHelped-no" data-test-id="startGoalsHelped-no" type="radio" name="startGoalsHelped" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -76,19 +76,19 @@
     <div class="form-group js-hidden" id="broadenGoalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-broadenGoalsHelped">
-          Did this help the Claimant to broaden job goals?
+          {{labels.broadenGoalsHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="broadenGoalsHelped-yes" class="block-label">
           <input id="broadenGoalsHelped-yes" data-test-id="broadenGoalsHelped-yes" type="radio" name="broadenGoalsHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="broadenGoalsHelped-no" class="block-label">
           <input id="broadenGoalsHelped-no" data-test-id="broadenGoalsHelped-no" type="radio" name="broadenGoalsHelped" value="false" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -97,19 +97,19 @@
     <div class="form-group js-hidden" id="transferableSkillsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-transferableSkillsHelped">
-          Did this help the Claimant to look for transferable skills?
+          {{labels.transferableSkillsHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="transferableSkillsHelped-yes" class="block-label">
           <input id="transferableSkillsHelped-yes" data-test-id="transferableSkillsHelped-yes" type="radio" name="transferableSkillsHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="transferableSkillsHelped-no" class="block-label">
           <input id="transferableSkillsHelped-no" data-test-id="transferableSkillsHelped-no" type="radio" name="transferableSkillsHelped" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -118,19 +118,19 @@
     <div class="form-group js-hidden" id="updateCvHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-updateCvHelped">
-          Did this help the Claimant to update their CV?
+          {{labels.updateCvHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="updateCvHelped-yes" class="block-label">
           <input id="updateCvHelped-yes" data-test-id="updateCvHelped-yes" type="radio" name="updateCvHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="updateCvHelped-no" class="block-label">
           <input id="updateCvHelped-no" data-test-id="updateCvHelped-no" type="radio" name="updateCvHelped" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -139,19 +139,19 @@
     <div class="form-group js-hidden" id="searchTermsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-searchTermsHelped">
-          Did this help the Claimant to look for alternative search terms for their online job search?
+          {{labels.searchTermsHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="searchTermsHelped-yes" class="block-label">
           <input id="searchTermsHelped-yes" data-test-id="searchTermsHelped-yes" type="radio" name="searchTermsHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="searchTermsHelped-no" class="block-label">
           <input id="searchTermsHelped-no" data-test-id="searchTermsHelped-no" type="radio" name="searchTermsHelped" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -160,19 +160,19 @@
     <div class="form-group js-hidden other-type" id="otherHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-otherHelped">
-          Did this help the Claimant to do the other thing you wanted them to do?
+          {{labels.otherHelped}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="otherHelped-yes" class="block-label">
           <input id="otherHelped-yes" data-test-id="otherHelped-yes" type="radio" name="otherHelped" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="otherHelped-no" class="block-label">
           <input id="otherHelped-no" data-test-id="otherHelped-no" type="radio" name="otherHelped" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -182,19 +182,19 @@
     <div class="form-group">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-claimantChange">
-          Has the Claimant changed how they search or prepare for work after using this tool?
+          {{labels.claimantChange}}
         </legend>
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
         <label for="claimantChange-yes" class="block-label">
           <input id="claimantChange-yes" data-test-id="claimantChange-yes" type="radio" name="claimantChange" value="true">
-          Yes
+          {{labels.yes}}
         </label>
 
         <label for="claimantChange-no" class="block-label">
           <input id="claimantChange-no" data-test-id="claimantChange-no" type="radio" name="claimantChange" value="false">
-          No
+          {{labels.no}}
         </label>
 
       </fieldset>
@@ -202,18 +202,22 @@
 
 
     <div class="form-group">
-      <label class="form-label-bold" for="claimantFeedback" data-test-id="question-claimantFeedback">What feedback has your Claimant given you about this tool?</label>
+      <label class="form-label-bold" for="claimantFeedback" data-test-id="question-claimantFeedback">
+        {{labels.claimantFeedback}}
+      </label>
       <textarea id="claimantFeedback" data-test-id="claimantFeedback" class="text textarea-full" rows="6" name="claimantFeedback"></textarea>
     </div>
 
     <div class="form-group">
-      <label class="form-label-bold" for="agentFeedback" data-test-id="question-agentFeedback">What feedback would you like to give about this tool?</label>
+      <label class="form-label-bold" for="agentFeedback" data-test-id="question-agentFeedback">
+        {{labels.agentFeedback}}
+      </label>
       <textarea id="agentFeedback" data-test-id="agentFeedback" class="text textarea-full" rows="6" name="agentFeedback"></textarea>
     </div>
 
 
     <fieldset class="star-rating form-group">
-      <legend>Please rate Explore Work You Could Do?</legend>
+      <legend>{{labels.rating}}</legend>
       <div class="rating-options-group rating-options-group-enabled">
         <input type="radio" id="rating-5" data-test-id="rating-5" name="rating" value="5">
         <label class="full" for="rating-5"></label>
