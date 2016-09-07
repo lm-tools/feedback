@@ -19,13 +19,13 @@ describe('Fetch survey script', () => {
       expect(JSON.parse(result.stdout)).to.have.property('labels').that.include.keys(
         [
           'whyTypes',
-          'whyTypes-start-goals',
-          'whyTypes-broaden-goals',
-          'whyTypes-transferable-skills',
-          'whyTypes-update-cv',
-          'whyTypes-search-terms',
-          'whyTypes-other',
-          'whyTypes-other-reason',
+          'whyTypesStartGoals',
+          'whyTypesBroadenGoals',
+          'whyTypesTransferableSkills',
+          'whyTypesUpdateCv',
+          'whyTypesSearchTerms',
+          'whyTypesOther',
+          'whyTypesOtherReason',
           'yes',
           'no',
           'startGoalsHelped',
@@ -45,12 +45,12 @@ describe('Fetch survey script', () => {
       expect(JSON.parse(result.stdout)).to.have.property('options').that.eql(
         {
           'whyTypes': [
-            'whyTypes-start-goals',
-            'whyTypes-broaden-goals',
-            'whyTypes-transferable-skills',
-            'whyTypes-update-cv',
-            'whyTypes-search-terms',
-            'whyTypes-other',
+            'whyTypesStartGoals',
+            'whyTypesBroadenGoals',
+            'whyTypesTransferableSkills',
+            'whyTypesUpdateCv',
+            'whyTypesSearchTerms',
+            'whyTypesOther',
           ],
           'startGoalsHelped': [
             'yes',

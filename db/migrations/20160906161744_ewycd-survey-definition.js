@@ -7,12 +7,12 @@ exports.up = (knex) =>
       definition: {
         options: {
           'whyTypes': [
-            'whyTypes-start-goals',
-            'whyTypes-broaden-goals',
-            'whyTypes-transferable-skills',
-            'whyTypes-update-cv',
-            'whyTypes-search-terms',
-            'whyTypes-other',
+            'whyTypesStartGoals',
+            'whyTypesBroadenGoals',
+            'whyTypesTransferableSkills',
+            'whyTypesUpdateCv',
+            'whyTypesSearchTerms',
+            'whyTypesOther',
           ],
           'startGoalsHelped': [
             'yes',
@@ -30,12 +30,12 @@ exports.up = (knex) =>
         },
         labels: {
           'whyTypes': 'Why did you set this To-Do for the Claimant?',
-          'whyTypes-start-goals': 'To get someone started on job goals',
-          'whyTypes-broaden-goals': 'To broaden job goals',
-          'whyTypes-transferable-skills': 'To look for transferable skills',
-          'whyTypes-update-cv': 'To update their CV',
-          'whyTypes-search-terms': 'To look for alternative search terms for their online job search',
-          'whyTypes-other': 'Other',
+          'whyTypesStartGoals': 'To get someone started on job goals',
+          'whyTypesBroadenGoals': 'To broaden job goals',
+          'whyTypesTransferableSkills': 'To look for transferable skills',
+          'whyTypesUpdateCv': 'To update their CV',
+          'whyTypesSearchTerms': 'To look for alternative search terms for their online job search',
+          'whyTypesOther': 'Other',
           'whyTypesOtherReason': 'Reason',
           'yes': 'Yes',
           'no': 'No',

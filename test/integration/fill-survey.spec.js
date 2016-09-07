@@ -17,7 +17,7 @@ describe('Explore work you could do survey', () => {
 
   function aBaseAnswersWith(additionalFields) {
     return Object.assign({}, {
-      whyTypeOtherReason: '',
+      whyTypesOtherReason: '',
       claimantFeedback: '',
       agentFeedback: '',
     }, additionalFields);
@@ -48,32 +48,32 @@ describe('Explore work you could do survey', () => {
     [
       {
         question: 'Did this helped with start goals',
-        type: 'whyTypes-start-goals',
+        type: 'whyTypesStartGoals',
         selector: ewycdSurveyPage.START_GOALS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with broaden goals',
-        type: 'whyTypes-broaden-goals',
+        type: 'whyTypesBroadenGoals',
         selector: ewycdSurveyPage.BROADEN_GOALS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with transferable skills',
-        type: 'whyTypes-transferable-skills',
+        type: 'whyTypesTransferableSkills',
         selector: ewycdSurveyPage.TRANSFERABLE_SKILLS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with update civ',
-        type: 'whyTypes-update-cv',
+        type: 'whyTypesUpdateCv',
         selector: ewycdSurveyPage.UPDATE_CV_PANEL_SELECTOR,
       },
       {
         question: 'Did this helped with search terms',
-        type: 'whyTypes-search-terms',
+        type: 'whyTypesSearchTerms',
         selector: ewycdSurveyPage.SEARCH_TERMS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with other thing',
-        type: 'whyTypes-other',
+        type: 'whyTypesOther',
         selector: ewycdSurveyPage.OTHER_HELPED_PANEL,
       },
     ].forEach(s => {
@@ -91,7 +91,7 @@ describe('Explore work you could do survey', () => {
     );
 
     it('should show "Other reason" when "Other" answer clicked', () => {
-      ewycdSurveyPage.fillWhyDidYouSetThis(['whyTypes-other']);
+      ewycdSurveyPage.fillWhyDidYouSetThis(['whyTypesOther']);
       return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
         .to.eql(false);
     });
@@ -134,12 +134,12 @@ describe('Explore work you could do survey', () => {
 
     it('should save "why did you set this" section to database', () => {
       const allWhyTypesValues = [
-        'whyTypes-start-goals',
-        'whyTypes-broaden-goals',
-        'whyTypes-transferable-skills',
-        'whyTypes-update-cv',
-        'whyTypes-search-terms',
-        'whyTypes-other',
+        'whyTypesStartGoals',
+        'whyTypesBroadenGoals',
+        'whyTypesTransferableSkills',
+        'whyTypesUpdateCv',
+        'whyTypesSearchTerms',
+        'whyTypesOther',
       ];
       ewycdSurveyPage.fillWhyDidYouSetThis(allWhyTypesValues);
       ewycdSurveyPage.fillOtherReason('Other reason');
@@ -150,7 +150,7 @@ describe('Explore work you could do survey', () => {
           expect(result.data).to.eql(aBaseAnswersWith(
             {
               whyTypes: allWhyTypesValues,
-              whyTypeOtherReason: 'Other reason',
+              whyTypesOtherReason: 'Other reason',
             }
           ))
         );
