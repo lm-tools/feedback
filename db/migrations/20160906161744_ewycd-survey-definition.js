@@ -14,18 +14,14 @@ exports.up = (knex) =>
             'whyTypesSearchTerms',
             'whyTypesOther',
           ],
-          'startGoalsHelped': [
-            'yes',
-            'no',
-          ],
-          'otherHelped': [
-            'yes',
-            'no',
-          ],
-          'claimantChange': [
-            'yes',
-            'no',
-          ],
+          'startGoalsHelped': ['yes', 'no'],
+          'broadenGoalsHelped': ['yes', 'no'],
+          'transferableSkillsHelped': ['yes', 'no'],
+          'updateCvHelped': ['yes', 'no'],
+          'searchTermsHelped': ['yes', 'no'],
+          'otherHelped': ['yes', 'no'],
+          'claimantChange': ['yes', 'no'],
+          'agentFeedback': ['yes', 'no'],
           'rating': ['5', '4', '3', '2', '1'],
         },
         labels: {

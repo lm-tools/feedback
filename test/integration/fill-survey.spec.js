@@ -170,12 +170,12 @@ describe('Explore work you could do survey', () => {
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith(
             {
-              startGoalsHelped: 'true',
-              broadenGoalsHelped: 'false',
-              transferableSkillsHelped: 'true',
-              updateCvHelped: 'false',
-              searchTermsHelped: 'true',
-              otherHelped: 'false',
+              startGoalsHelped: 'yes',
+              broadenGoalsHelped: 'no',
+              transferableSkillsHelped: 'yes',
+              updateCvHelped: 'no',
+              searchTermsHelped: 'yes',
+              otherHelped: 'no',
             }
           ))
         );
@@ -186,7 +186,7 @@ describe('Explore work you could do survey', () => {
       return ewycdSurveyPage.submit()
         .then(() => fetchFirstSurveyFromDB())
         .then(result =>
-          expect(result.data).to.eql(aBaseAnswersWith({ claimantChange: 'true' }))
+          expect(result.data).to.eql(aBaseAnswersWith({ claimantChange: 'yes' }))
         );
     });
 

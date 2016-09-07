@@ -16,8 +16,8 @@ describe('OptionsWithLabels', () => {
     );
     expect(optionsWithLabels.options).to.eql({
       field1: [
-        { name: 'yes', label: 'LabelYes' },
-        { name: 'no', label: 'LabelNo' },
+        { name: 'field1', value: 'yes', label: 'LabelYes' },
+        { name: 'field1', value: 'no', label: 'LabelNo' },
       ],
     });
   });

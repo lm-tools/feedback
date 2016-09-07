@@ -16,8 +16,8 @@
         <legend class="visuallyhidden">{{labels.whyTypes}}</legend>
 
         {{#options.whyTypes}}
-          <label class="block-label" for="{{name}}">
-            <input id="{{name}}" data-test-id="{{name}}" name="whyTypes" type="checkbox" value="{{name}}" data-toggle-visibility-for=".{{name}}-visibility">
+          <label class="block-label" for="{{value}}">
+            <input id="{{value}}" data-test-id="{{value}}" name="{{name}}" type="checkbox" value="{{value}}" data-toggle-visibility-for=".{{value}}-visibility">
             {{label}}
           </label>
         {{/options.whyTypes}}
@@ -40,15 +40,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="startGoalsHelped-yes" class="block-label">
-          <input id="startGoalsHelped-yes" data-test-id="startGoalsHelped-yes" type="radio" name="startGoalsHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="startGoalsHelped-no" class="block-label">
-          <input id="startGoalsHelped-no" data-test-id="startGoalsHelped-no" type="radio" name="startGoalsHelped" value="false">
-          {{labels.no}}
-        </label>
+        {{#options.startGoalsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.startGoalsHelped}}
 
       </fieldset>
     </div>
@@ -61,15 +58,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="broadenGoalsHelped-yes" class="block-label">
-          <input id="broadenGoalsHelped-yes" data-test-id="broadenGoalsHelped-yes" type="radio" name="broadenGoalsHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="broadenGoalsHelped-no" class="block-label">
-          <input id="broadenGoalsHelped-no" data-test-id="broadenGoalsHelped-no" type="radio" name="broadenGoalsHelped" value="false" value="false">
-          {{labels.no}}
-        </label>
+        {{#options.broadenGoalsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.broadenGoalsHelped}}
 
       </fieldset>
     </div>
@@ -82,16 +76,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="transferableSkillsHelped-yes" class="block-label">
-          <input id="transferableSkillsHelped-yes" data-test-id="transferableSkillsHelped-yes" type="radio" name="transferableSkillsHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="transferableSkillsHelped-no" class="block-label">
-          <input id="transferableSkillsHelped-no" data-test-id="transferableSkillsHelped-no" type="radio" name="transferableSkillsHelped" value="false">
-          {{labels.no}}
-        </label>
-
+         {{#options.transferableSkillsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.transferableSkillsHelped}}
       </fieldset>
     </div>
 
@@ -103,16 +93,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="updateCvHelped-yes" class="block-label">
-          <input id="updateCvHelped-yes" data-test-id="updateCvHelped-yes" type="radio" name="updateCvHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="updateCvHelped-no" class="block-label">
-          <input id="updateCvHelped-no" data-test-id="updateCvHelped-no" type="radio" name="updateCvHelped" value="false">
-          {{labels.no}}
-        </label>
-
+         {{#options.updateCvHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.updateCvHelped}}
       </fieldset>
     </div>
 
@@ -124,16 +110,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="searchTermsHelped-yes" class="block-label">
-          <input id="searchTermsHelped-yes" data-test-id="searchTermsHelped-yes" type="radio" name="searchTermsHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="searchTermsHelped-no" class="block-label">
-          <input id="searchTermsHelped-no" data-test-id="searchTermsHelped-no" type="radio" name="searchTermsHelped" value="false">
-          {{labels.no}}
-        </label>
-
+         {{#options.searchTermsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.searchTermsHelped}}
       </fieldset>
     </div>
 
@@ -145,16 +127,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="otherHelped-yes" class="block-label">
-          <input id="otherHelped-yes" data-test-id="otherHelped-yes" type="radio" name="otherHelped" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="otherHelped-no" class="block-label">
-          <input id="otherHelped-no" data-test-id="otherHelped-no" type="radio" name="otherHelped" value="false">
-          {{labels.no}}
-        </label>
-
+         {{#options.otherHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.otherHelped}}
       </fieldset>
     </div>
 
@@ -167,15 +145,12 @@
         <div class="form-hint text radio-hint"> </div>
         <div class="form-error validation-message"> </div>
 
-        <label for="claimantChange-yes" class="block-label">
-          <input id="claimantChange-yes" data-test-id="claimantChange-yes" type="radio" name="claimantChange" value="true">
-          {{labels.yes}}
-        </label>
-
-        <label for="claimantChange-no" class="block-label">
-          <input id="claimantChange-no" data-test-id="claimantChange-no" type="radio" name="claimantChange" value="false">
-          {{labels.no}}
-        </label>
+        {{#options.claimantChange}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.claimantChange}}
 
       </fieldset>
     </div>
@@ -199,16 +174,10 @@
     <fieldset class="star-rating form-group">
       <legend>{{labels.rating}}</legend>
       <div class="rating-options-group rating-options-group-enabled">
-        <input type="radio" id="rating-5" data-test-id="rating-5" name="rating" value="5">
-        <label class="full" for="rating-5"></label>
-        <input type="radio" id="rating-4" data-test-id="rating-4" name="rating" value="4">
-        <label class="full" for="rating-4"></label>
-        <input type="radio" id="rating-3" data-test-id="rating-3" name="rating" value="3">
-        <label class="full" for="rating-3"></label>
-        <input type="radio" id="rating-2" data-test-id="rating-2" name="rating" value="2">
-        <label class="full" for="rating-2"></label>
-        <input type="radio" id="rating-1" data-test-id="rating-1" name="rating" value="1">
-        <label class="full" for="rating-1"></label>
+        {{#options.rating}}
+          <input type="radio" id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" value="{{value}}">
+          <label class="full" for="{{name}}-{{value}}"></label>
+        {{/options.rating}}
       </div>
     </fieldset>
 
