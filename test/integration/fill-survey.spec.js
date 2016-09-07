@@ -132,6 +132,14 @@ describe('Explore work you could do survey', () => {
         })
     );
 
+    it('should save survey_id', () =>
+      ewycdSurveyPage.submit()
+        .then(() => fetchFirstSurveyFromDB())
+        .then(result => {
+          expect(result.survey_id).to.eql('ewycd-1'); // this is currently the only ewycd survey
+        })
+    );
+
     it('should save "why did you set this" section to database', () => {
       const allWhyTypesValues = [
         'whyTypesStartGoals',

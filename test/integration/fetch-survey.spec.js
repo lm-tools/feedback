@@ -2,14 +2,45 @@
 const childProcess = require('child_process');
 const path = require('path');
 const fetchSurveyScript = path.join(__dirname, '..', '..', 'scripts/fetch-survey.js');
+const AnswerModel = require('../../app/models/answers-model');
+const dbHelper = require('./support/dbHelper');
 const expect = require('chai').expect;
 
 describe('Fetch survey script', () => {
   describe('executing "scripts/fetch-survey.js ewycd-1"', () => {
+    const sampleAnswers = {
+      survey_id: 'ewycd-1',
+      ref: '123',
+      data: {
+        whyTypes: [
+          'whyTypesStartGoals',
+          'whyTypesBroadenGoals',
+          'whyTypesTransferableSkills',
+          'whyTypesUpdateCv',
+          'whyTypesSearchTerms',
+          'whyTypesOther',
+        ],
+        whyTypesOtherReason: 'asdf',
+        startGoalsHelped: 'no',
+        broadenGoalsHelped: 'yes',
+        transferableSkillsHelped: 'no',
+        updateCvHelped: 'yes',
+        searchTermsHelped: 'no',
+        otherHelped: 'yes',
+        claimantChange: 'no',
+        claimantFeedback: 'adsf',
+        agentFeedback: 'asdf',
+        rating: '2',
+      },
+    };
     let result;
-    before(() => {
-      result = childProcess.spawnSync(fetchSurveyScript, ['ewycd-1']);
-    });
+    before(() =>
+      dbHelper.cleanDb()
+        .then(() => new AnswerModel(sampleAnswers).save()
+        ).then(() => {
+          result = childProcess.spawnSync(fetchSurveyScript, ['ewycd-1']);
+        })
+    );
 
     it('should execute without error', () => {
       expect(result.status).to.eql(0);
@@ -62,6 +93,14 @@ describe('Fetch survey script', () => {
           'agentFeedback': ['yes', 'no'],
           'rating': ['5', '4', '3', '2', '1'],
         }
+      );
+    });
+
+    it('should return answers', () => {
+      expect(JSON.parse(result.stdout)).to.have.property('answers').that.eql(
+        [
+          Object.assign({}, sampleAnswers.data, { refId: sampleAnswers.ref }),
+        ]
       );
     });
   });

@@ -17,12 +17,15 @@ if (typeof surveyId === 'undefined') {
 }
 
 
-new SurveyModel({ id: surveyId }).fetch()
+new SurveyModel({ id: surveyId }).fetch({ withRelated: ['answers'] })
   .then(result => {
     const surveyDefinition = result.get('definition');
+    const answers = result.related('answers').serialize();
+
     console.log(JSON.stringify({
       labels: surveyDefinition.labels,
       options: surveyDefinition.options,
+      answers: answers.map(answer => Object.assign({}, answer.data, { refId: answer.ref })),
     }));
     process.exit(0);
   })

@@ -38,7 +38,17 @@ router.get('/:type/:ref/error/:errorKey', (req, res) => {
 
 
 router.post('/:type/:ref', (req, res, next) =>
-  new AnswersModel({ ref: req.params.ref, survey: req.params.type, data: req.body }).save()
+  new SurveyModel({ type: req.params.type }).fetch()
+    .then(survey =>
+      new AnswersModel(
+        {
+          ref: req.params.ref,
+          survey: req.params.type,
+          data: req.body,
+          survey_id: survey.id,
+        }
+      ).save()
+    )
     .then(() => res.redirect(`${req.app.locals.basePath}/confirmation`))
     .catch((err) => next(err))
 );
