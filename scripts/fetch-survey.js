@@ -19,8 +19,10 @@ if (typeof surveyId === 'undefined') {
 
 new SurveyModel({ id: surveyId }).fetch()
   .then(result => {
+    const surveyDefinition = result.get('definition');
     console.log(JSON.stringify({
-      labels: result.get('definition').labels,
+      labels: surveyDefinition.labels,
+      options: surveyDefinition.options,
     }));
     process.exit(0);
   })

@@ -48,32 +48,32 @@ describe('Explore work you could do survey', () => {
     [
       {
         question: 'Did this helped with start goals',
-        type: 'start-goals',
+        type: 'whyTypes-start-goals',
         selector: ewycdSurveyPage.START_GOALS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with broaden goals',
-        type: 'broaden-goals',
+        type: 'whyTypes-broaden-goals',
         selector: ewycdSurveyPage.BROADEN_GOALS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with transferable skills',
-        type: 'transferable-skills',
+        type: 'whyTypes-transferable-skills',
         selector: ewycdSurveyPage.TRANSFERABLE_SKILLS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with update civ',
-        type: 'update-cv',
+        type: 'whyTypes-update-cv',
         selector: ewycdSurveyPage.UPDATE_CV_PANEL_SELECTOR,
       },
       {
         question: 'Did this helped with search terms',
-        type: 'search-terms',
+        type: 'whyTypes-search-terms',
         selector: ewycdSurveyPage.SEARCH_TERMS_HELPED_PANEL,
       },
       {
         question: 'Did this helped with other thing',
-        type: 'other',
+        type: 'whyTypes-other',
         selector: ewycdSurveyPage.OTHER_HELPED_PANEL,
       },
     ].forEach(s => {
@@ -91,7 +91,7 @@ describe('Explore work you could do survey', () => {
     );
 
     it('should show "Other reason" when "Other" answer clicked', () => {
-      ewycdSurveyPage.fillWhyDidYouSetThis(['other']);
+      ewycdSurveyPage.fillWhyDidYouSetThis(['whyTypes-other']);
       return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
         .to.eql(false);
     });
@@ -134,12 +134,12 @@ describe('Explore work you could do survey', () => {
 
     it('should save "why did you set this" section to database', () => {
       const allWhyTypesValues = [
-        'start-goals',
-        'broaden-goals',
-        'transferable-skills',
-        'update-cv',
-        'search-terms',
-        'other',
+        'whyTypes-start-goals',
+        'whyTypes-broaden-goals',
+        'whyTypes-transferable-skills',
+        'whyTypes-update-cv',
+        'whyTypes-search-terms',
+        'whyTypes-other',
       ];
       ewycdSurveyPage.fillWhyDidYouSetThis(allWhyTypesValues);
       ewycdSurveyPage.fillOtherReason('Other reason');

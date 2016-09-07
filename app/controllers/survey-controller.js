@@ -3,6 +3,7 @@ const router = new express.Router();
 const AnswersModel = require('../models/answers-model');
 const SurveyModel = require('../models/survey-model');
 const i18n = require('i18n');
+const OptionsWithLabels = require('./options-with-labels');
 /* eslint-disable no-underscore-dangle */
 
 router.get('/:type/:ref', (req, res) => {
@@ -17,7 +18,13 @@ router.get('/:type/:ref', (req, res) => {
       new SurveyModel({ type: req.params.type })
         .fetch()
         .then(survey => {
-          res.render('survey', { pageId: 'survey', labels: survey.get('definition').labels });
+          const options = new OptionsWithLabels(survey.get('definition')).options;
+
+          res.render('survey', {
+            pageId: 'survey',
+            labels: survey.get('definition').labels,
+            options,
+          });
         });
     });
 });

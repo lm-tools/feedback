@@ -40,5 +40,28 @@ describe('Fetch survey script', () => {
           'rating',
         ]);
     });
+
+    it.skip('should return predefined options', () => {
+      expect(JSON.parse(result.stdout)).to.have.property('options').that.eql(
+        {
+          'whyTypes': [
+            'whyTypes-start-goals',
+            'whyTypes-broaden-goals',
+            'whyTypes-transferable-skills',
+            'whyTypes-update-cv',
+            'whyTypes-search-terms',
+            'whyTypes-other',
+          ],
+          'startGoalsHelped': [
+            'yes',
+            'no',
+          ],
+          'otherHelped': [
+            'yes',
+            'no',
+          ],
+        }
+      );
+    });
   });
 });

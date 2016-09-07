@@ -5,6 +5,29 @@ exports.up = (knex) =>
       id: 'ewycd-1',
       type: 'ewycd',
       definition: {
+        options: {
+          'whyTypes': [
+            'whyTypes-start-goals',
+            'whyTypes-broaden-goals',
+            'whyTypes-transferable-skills',
+            'whyTypes-update-cv',
+            'whyTypes-search-terms',
+            'whyTypes-other',
+          ],
+          'startGoalsHelped': [
+            'yes',
+            'no',
+          ],
+          'otherHelped': [
+            'yes',
+            'no',
+          ],
+          'claimantChange': [
+            'yes',
+            'no',
+          ],
+          'rating': ['5', '4', '3', '2', '1'],
+        },
         labels: {
           'whyTypes': 'Why did you set this To-Do for the Claimant?',
           'whyTypes-start-goals': 'To get someone started on job goals',
@@ -13,7 +36,7 @@ exports.up = (knex) =>
           'whyTypes-update-cv': 'To update their CV',
           'whyTypes-search-terms': 'To look for alternative search terms for their online job search',
           'whyTypes-other': 'Other',
-          'whyTypes-other-reason': 'Reason',
+          'whyTypesOtherReason': 'Reason',
           'yes': 'Yes',
           'no': 'No',
           'startGoalsHelped': 'Did this help the Claimant to get someone started on job goals?',

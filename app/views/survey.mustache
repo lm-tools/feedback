@@ -15,34 +15,14 @@
 
         <legend class="visuallyhidden">{{labels.whyTypes}}</legend>
 
-        <label class="block-label" for="why-type-start-goals">
-          <input id="why-type-start-goals" data-test-id="why-type-start-goals" name="whyTypes" type="checkbox" value="start-goals" data-toggle-visibility-for="#startGoalsHelped-panel">
-          {{labels.whyTypes-start-goals}}
-        </label>
-        <label class="block-label" for="why-type-broaden-goals">
-          <input id="why-type-broaden-goals" data-test-id="why-type-broaden-goals" name="whyTypes" type="checkbox" value="broaden-goals" data-toggle-visibility-for="#broadenGoalsHelped-panel">
-          {{labels.whyTypes-broaden-goals}}
-        </label>
-        <label class="block-label" for="why-type-transferable-skills">
-          <input id="why-type-transferable-skills" data-test-id="why-type-transferable-skills" name="whyTypes" type="checkbox" value="transferable-skills" data-toggle-visibility-for="#transferableSkillsHelped-panel">
-          {{labels.whyTypes-transferable-skills}}
-        </label>
-        <label class="block-label" for="why-type-update-cv">
-          <input id="why-type-update-cv" data-test-id="why-type-update-cv" name="whyTypes" type="checkbox" value="update-cv" data-toggle-visibility-for="#updateCvHelped-panel">
-          {{labels.whyTypes-update-cv}}
-        </label>
-        <label class="block-label" for="why-type-search-terms">
-          <input id="why-type-search-terms" data-test-id="why-type-search-terms" name="whyTypes" type="checkbox" value="search-terms" data-toggle-visibility-for="#searchTermsHelped-panel">
-          {{labels.whyTypes-search-terms}}
-        </label>
-        <label class="block-label" for="why-type-other">
-          <input id="why-type-other" data-test-id="why-type-other" name="whyTypes" type="checkbox" value="other" data-toggle-visibility-for=".other-type">
-          {{labels.whyTypes-other}}
-        </label>
+        {{#options.whyTypes}}
+          <label class="block-label" for="{{name}}">
+            <input id="{{name}}" data-test-id="{{name}}" name="whyTypes" type="checkbox" value="{{name}}" data-toggle-visibility-for=".{{name}}-visibility">
+            {{label}}
+          </label>
+        {{/options.whyTypes}}
 
-
-
-        <div class="panel panel-border-narrow js-hidden other-type" data-test-id="other-reason-panel">
+        <div class="panel panel-border-narrow js-hidden whyTypes-other-visibility" data-test-id="other-reason-panel">
           <label for="why_other_answer" class="form-label">
             {{labels.whyTypes-other-reason}}
           </label>
@@ -52,7 +32,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden" id="startGoalsHelped-panel">
+    <div class="whyTypes-start-goals-visibility form-group js-hidden" id="whyTypes-start-goalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-startGoalsHelped">
           {{labels.startGoalsHelped}}
@@ -73,7 +53,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden" id="broadenGoalsHelped-panel">
+    <div class="whyTypes-broaden-goals-visibility form-group js-hidden" id="whyTypes-broaden-goalsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-broadenGoalsHelped">
           {{labels.broadenGoalsHelped}}
@@ -94,7 +74,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden" id="transferableSkillsHelped-panel">
+    <div class="whyTypes-transferable-skills-visibility form-group js-hidden" id="whyTypes-transferable-skillsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-transferableSkillsHelped">
           {{labels.transferableSkillsHelped}}
@@ -115,7 +95,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden" id="updateCvHelped-panel">
+    <div class="whyTypes-update-cv-visibility form-group js-hidden" id="whyTypes-update-cvHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-updateCvHelped">
           {{labels.updateCvHelped}}
@@ -136,7 +116,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden" id="searchTermsHelped-panel">
+    <div class="whyTypes-search-terms-visibility form-group js-hidden" id="whyTypes-search-termsHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-searchTermsHelped">
           {{labels.searchTermsHelped}}
@@ -157,7 +137,7 @@
       </fieldset>
     </div>
 
-    <div class="form-group js-hidden other-type" id="otherHelped-panel">
+    <div class="whyTypes-other-visibility form-group js-hidden" id="whyTypes-otherHelped-panel">
       <fieldset class="inline">
         <legend class="form-label-bold text" data-test-id="question-otherHelped">
           {{labels.otherHelped}}
