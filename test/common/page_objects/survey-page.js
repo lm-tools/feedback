@@ -11,6 +11,9 @@ class SurveyPage {
   getQuestionValues() {
     return this.browser.queryAll('[data-test-id^="question-"]').map(el => el.textContent.trim());
   }
+  getText(selector) {
+    return this.browser.text(selector);
+  }
 
   submit() {
     return this.browser.click('[type="submit"]');

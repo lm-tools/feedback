@@ -6,6 +6,7 @@ const globalPage = helper.globalPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const AnswersModel = require('../../app/models/answers-model');
+const SurveyModel = require('../../app/models/survey-model');
 
 describe('Explore work you could do survey', () => {
   const theType = 'ewycd';
@@ -228,6 +229,31 @@ describe('Explore work you could do survey', () => {
     it('should show confirmation page', () =>
       ewycdSurveyPage.submit()
         .then(() => expect(globalPage.getPageId()).to.eql(confirmationPage.PAGE_ID))
+    );
+  });
+
+  describe('versions', () => {
+    before(() => new SurveyModel({
+      id: 'latest',
+      type: theType,
+      definition: { labels: { whyTypes: 'Latest copy' }, options: {} },
+    }).save(null, { method: 'insert' })
+      .then(() => ewycdSurveyPage.visit(theType, theRef))
+    );
+
+    after(() => new AnswersModel().query({ where: { survey_id: 'latest' } }).destroy()
+      .then(() => new SurveyModel({ id: 'latest' }).destroy()));
+
+    it('should save latest survey_id', () =>
+      ewycdSurveyPage.submit()
+        .then(() => fetchFirstAnswersModelFromDB())
+        .then(result => {
+          expect(result.survey_id).to.eql('latest');
+        })
+    );
+
+    it('should render latest survey', () =>
+      expect(ewycdSurveyPage.getText(ewycdSurveyPage.QUESTION_WHY_TYPES)).to.eql('Latest copy')
     );
   });
 });

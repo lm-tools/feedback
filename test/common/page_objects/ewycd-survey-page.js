@@ -11,6 +11,7 @@ class EWYCDSurveyPage extends BaseSurveyPage {
     this.SEARCH_TERMS_HELPED_PANEL = '#whyTypesSearchTermsHelped-panel';
     this.OTHER_HELPED_PANEL = '#whyTypesOtherHelped-panel';
     this.OTHER_REASON_PANEL = '[data-test-id="other-reason-panel"]';
+    this.QUESTION_WHY_TYPES = '[data-test-id="question-why-types"]';
   }
 
   fillWhyDidYouSetThis(values) {

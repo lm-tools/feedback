@@ -16,6 +16,7 @@ router.get('/:type/:ref', (req, res) => {
         );
       }
       new SurveyModel({ type: req.params.type })
+        .orderBy('updated_at', 'DESC')
         .fetch()
         .then(survey => {
           const options = new OptionsWithLabels(survey.get('definition')).options;
@@ -38,7 +39,9 @@ router.get('/:type/:ref/error/:errorKey', (req, res) => {
 
 
 router.post('/:type/:ref', (req, res, next) =>
-  new SurveyModel({ type: req.params.type }).fetch()
+  new SurveyModel({ type: req.params.type })
+    .orderBy('updated_at', 'DESC')
+    .fetch()
     .then(survey =>
       new AnswersModel(
         {
