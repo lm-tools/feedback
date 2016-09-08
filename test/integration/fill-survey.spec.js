@@ -105,6 +105,14 @@ describe('Explore work you could do survey', () => {
           expect(errorPage.getMessage()).to.eql('You’ve already given feedback.');
         })
     );
+
+    it('should display 404 if survey not found', () =>
+      ewycdSurveyPage.visit('not-real', theRef)
+        .catch(() => {
+          expect(globalPage.getPageId()).to.eql(errorPage.PAGE_ID);
+          expect(errorPage.getMessage()).to.eql('Page not found');
+        })
+    );
   });
 
   describe('analytics', () => {

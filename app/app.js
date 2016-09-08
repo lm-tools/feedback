@@ -79,6 +79,13 @@ app.use((req, res, next) => {
 });
 
 // error handlers
+app.use((err, req, res, next) => {
+  if (err.message === 'EmptyResponse') {
+    // eslint-disable-next-line no-param-reassign
+    err.status = 404;
+  }
+  next(err);
+});
 
 /* eslint-disable no-underscore-dangle */
 // eslint-disable-next-line no-unused-vars
