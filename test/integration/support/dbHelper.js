@@ -3,6 +3,6 @@ const knex = require('../../../app/db').knex;
 
 module.exports = {
   cleanDb() {
-    return knexCleaner.clean(knex, { ignoreTables: ['knex_migrations'] });
+    return knexCleaner.clean(knex, { ignoreTables: ['knex_migrations', 'survey'] });
   },
 };

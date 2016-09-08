@@ -1,7 +1,9 @@
 const express = require('express');
 const router = new express.Router();
 const AnswersModel = require('../models/answers-model');
+const SurveyModel = require('../models/survey-model');
 const i18n = require('i18n');
+const OptionsWithLabels = require('./options-with-labels');
 /* eslint-disable no-underscore-dangle */
 
 router.get('/:type/:ref', (req, res) => {
@@ -12,9 +14,18 @@ router.get('/:type/:ref', (req, res) => {
         res.redirect(
           `${req.app.locals.basePath}/${req.params.type}/${req.params.ref}/error/already-given`
         );
-      } else {
-        res.render('survey', { pageId: 'survey' });
       }
+      new SurveyModel({ type: req.params.type })
+        .fetch()
+        .then(survey => {
+          const options = new OptionsWithLabels(survey.get('definition')).options;
+
+          res.render('survey', {
+            pageId: 'survey',
+            labels: survey.get('definition').labels,
+            options,
+          });
+        });
     });
 });
 
@@ -27,7 +38,17 @@ router.get('/:type/:ref/error/:errorKey', (req, res) => {
 
 
 router.post('/:type/:ref', (req, res, next) =>
-  new AnswersModel({ ref: req.params.ref, survey: req.params.type, data: req.body }).save()
+  new SurveyModel({ type: req.params.type }).fetch()
+    .then(survey =>
+      new AnswersModel(
+        {
+          ref: req.params.ref,
+          survey: req.params.type,
+          data: req.body,
+          survey_id: survey.id,
+        }
+      ).save()
+    )
     .then(() => res.redirect(`${req.app.locals.basePath}/confirmation`))
     .catch((err) => next(err))
 );
