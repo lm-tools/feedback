@@ -32,12 +32,19 @@ For example, to mount the application at `/feedback`, run:
 $ EXPRESS_BASE_PATH=/feedback npm run start
 ```
 
-## Test user creation
+## Add new survey
 
-You can create user and then fetch all the users by executing below commands
+### New version of existing survey
 
-    $ curl -X POST http://localhost:3000/users -d '{"name":"some name","surname":"some surname123"}' -H "Content-Type: application/json"
-    $ curl http://localhost:3000/users
+1. Create migration `$ npm run create-migration <survey-id>-definition`
+2. Replace the body with migration for the previous version .i.e
+[db/migrations/20160906161744_ewycd-survey-definition.js](db/migrations/20160906161744_ewycd-survey-definition.js)
+3. Edit it and run it `$ npm run db-migrate`
+4. If you want to iterate on the changes you will have to reapplied the already run migration with
+```
+$ npm run db-rollback
+$ npm run db-migrate
+```
 
 ## Troubleshooting
 
