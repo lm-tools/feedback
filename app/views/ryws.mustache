@@ -1,0 +1,189 @@
+{{<layout}}
+
+  {{$applicationContent}}
+
+  <h2 class="heading-xlarge">Give feedback</h2>
+
+  <form method="POST">
+
+    <div class="form-group">
+
+      <h3 class="form-label-bold text" data-test-id="question-why-types">{{labels.whyTypes}}</h3>
+      <p>Select all that apply</p>
+
+      <fieldset>
+
+        <legend class="visuallyhidden">{{labels.whyTypes}}</legend>
+
+        {{#options.whyTypes}}
+          <label class="block-label" for="{{value}}">
+            <input id="{{value}}" data-test-id="{{value}}" name="{{name}}" type="checkbox" value="{{value}}" data-toggle-visibility-for=".{{value}}-visibility">
+            {{label}}
+          </label>
+        {{/options.whyTypes}}
+
+        <div class="panel panel-border-narrow js-hidden whyTypesOther-visibility" data-test-id="other-reason-panel">
+          <label for="why_other_answer" class="form-label">
+            {{labels.whyTypesOtherReason}}
+          </label>
+          <input type="text" id="why_other_answer" data-test-id="why-other-answer" name="whyTypesOtherReason">
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="whyTypesStartGoals-visibility form-group js-hidden" id="whyTypesStartGoalsHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-startGoalsHelped">
+          {{labels.startGoalsHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        {{#options.startGoalsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.startGoalsHelped}}
+
+      </fieldset>
+    </div>
+
+    <div class="whyTypesBroadenGoals-visibility form-group js-hidden" id="whyTypesBroadenGoalsHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-broadenGoalsHelped">
+          {{labels.broadenGoalsHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        {{#options.broadenGoalsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.broadenGoalsHelped}}
+
+      </fieldset>
+    </div>
+
+    <div class="whyTypesTransferableSkills-visibility form-group js-hidden" id="whyTypesTransferableSkillsHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-transferableSkillsHelped">
+          {{labels.transferableSkillsHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.transferableSkillsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.transferableSkillsHelped}}
+      </fieldset>
+    </div>
+
+    <div class="whyTypesUpdateCv-visibility form-group js-hidden" id="whyTypesUpdateCvHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-updateCvHelped">
+          {{labels.updateCvHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.updateCvHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.updateCvHelped}}
+      </fieldset>
+    </div>
+
+    <div class="whyTypesSearchTerms-visibility form-group js-hidden" id="whyTypesSearchTermsHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-searchTermsHelped">
+          {{labels.searchTermsHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.searchTermsHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.searchTermsHelped}}
+      </fieldset>
+    </div>
+
+    <div class="whyTypesOther-visibility form-group js-hidden" id="whyTypesOtherHelped-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-otherHelped">
+          {{labels.otherHelped}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.otherHelped}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.otherHelped}}
+      </fieldset>
+    </div>
+
+
+    <div class="form-group">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-claimantChange">
+          {{labels.claimantChange}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        {{#options.claimantChange}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.claimantChange}}
+
+      </fieldset>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label-bold" for="claimantFeedback" data-test-id="question-claimantFeedback">
+        {{labels.claimantFeedback}}
+      </label>
+      <textarea id="claimantFeedback" data-test-id="claimantFeedback" class="text textarea-full" rows="6" name="claimantFeedback"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label-bold" for="agentFeedback" data-test-id="question-agentFeedback">
+        {{labels.agentFeedback}}
+      </label>
+      <textarea id="agentFeedback" data-test-id="agentFeedback" class="text textarea-full" rows="6" name="agentFeedback"></textarea>
+    </div>
+
+
+    <fieldset class="star-rating form-group">
+      <legend>{{labels.rating}}</legend>
+      <div class="rating-options-group rating-options-group-enabled">
+        {{#options.rating}}
+          <input type="radio" id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" value="{{value}}">
+          <label class="full" for="{{name}}-{{value}}"></label>
+        {{/options.rating}}
+      </div>
+    </fieldset>
+
+      <input class="button" type="submit" value="Save">
+    </form>
+
+  {{/applicationContent}}
+
+{{/layout}}
