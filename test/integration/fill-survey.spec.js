@@ -29,16 +29,15 @@ describe('Explore work you could do survey', () => {
 
   describe('render', () => {
     const expectedSurveyQuestions = [
-      'Why did you set this To-Do for the Claimant?',
-      'Did this help the Claimant to get someone started on job goals?',
-      'Did this help the Claimant to broaden job goals?',
-      'Did this help the Claimant to look for transferable skills?',
-      'Did this help the Claimant to update their CV?',
-      'Did this help the Claimant to look for alternative ' +
-      'search terms for their online job search?',
-      'Did this help the Claimant to do the other thing you wanted them to do?',
-      'Has the Claimant changed how they search or prepare for work after using this tool?',
-      'What feedback has your Claimant given you about this tool?',
+      'Why did you set this to-do for the claimant?',
+      'Did it help them get started on job goals?',
+      'Did it help them make their job goals broader?',
+      'Did it help them look for transferable skills?',
+      'Did it help them update their CV?',
+      'Did it help them learn about different search terms for online job searches?',
+      'Did it help them do the other thing you wanted them to do?',
+      'After using this tool, has the claimant changed how they search or prepare for work?',
+      'What feedback has the claimant given you about this tool?',
       'What feedback would you like to give about this tool?',
     ];
 
@@ -145,7 +144,7 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.submit()
         .then(() => fetchFirstAnswersModelFromDB())
         .then(result => {
-          expect(result.survey_id).to.eql('ewycd-1'); // this is currently the only ewycd survey
+          expect(result.survey_id).to.eql('ewycd-2');
         })
     );
 
