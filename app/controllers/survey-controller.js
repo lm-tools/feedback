@@ -6,7 +6,7 @@ const i18n = require('i18n');
 const OptionsWithLabels = require('./options-with-labels');
 /* eslint-disable no-underscore-dangle */
 
-router.get('/:type/:ref', (req, res) => {
+router.get('/:type/:ref', (req, res, next) => {
   new AnswersModel({ ref: req.params.ref, survey: req.params.type })
     .fetch()
     .then(model => {
@@ -17,7 +17,7 @@ router.get('/:type/:ref', (req, res) => {
       }
       new SurveyModel({ type: req.params.type })
         .orderBy('updated_at', 'DESC')
-        .fetch()
+        .fetch({ require: true })
         .then(survey => {
           const options = new OptionsWithLabels(survey.get('definition')).options;
 
@@ -26,7 +26,8 @@ router.get('/:type/:ref', (req, res) => {
             labels: survey.get('definition').labels,
             options,
           });
-        });
+        })
+        .catch(err => next(err));
     });
 });
 
