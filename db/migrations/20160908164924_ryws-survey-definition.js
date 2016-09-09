@@ -35,7 +35,7 @@ exports.up = (knex) =>
           'otherInformation': 'What other information would you like to see?',
           'claimantFeedback': 'What feedback have you received from claimants using the tracker?',
           'agentFeedback': 'What other feedback would you like to give us?',
-          'rating': 'Please rate the job application tracker'
+          'rating': 'Please rate the job application tracker',
         },
       },
       created_at: new Date(),
