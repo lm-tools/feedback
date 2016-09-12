@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const surveyController = require('./controllers/survey-controller');
-const confirmationController = require('./controllers/confirmation-controller');
 const i18nMiddleware = require('./middleware/i18n');
 const i18n = require('i18n');
 const healthCheckController = require('./controllers/health-check-controller');
@@ -64,7 +63,6 @@ app.use(assetPath, express.static(path.join(__dirname, '..',
 
 
 app.use(`${basePath}/`, surveyController);
-app.use(`${basePath}/confirmation`, confirmationController);
 
 if (app.get('env') === 'development' || app.get('env') === 'test') {
   // eslint-disable-next-line global-require
