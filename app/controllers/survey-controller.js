@@ -38,6 +38,10 @@ router.get('/:type/:ref/error/:errorKey', (req, res) => {
   });
 });
 
+router.get('/:type/:ref/confirmation', (req, res) => {
+  res.render('confirmation', { pageId: 'confirmation' });
+});
+
 
 router.post('/:type/:ref', (req, res, next) =>
   new SurveyModel({ type: req.params.type })
@@ -53,7 +57,9 @@ router.post('/:type/:ref', (req, res, next) =>
         }
       ).save()
     )
-    .then(() => res.redirect(`${req.app.locals.basePath}/confirmation`))
+    .then(() => res.redirect(
+      `${req.app.locals.basePath}/${req.params.type}/${req.params.ref}/confirmation`)
+    )
     .catch((err) => next(err))
 );
 
