@@ -5,8 +5,7 @@ const errorPage = helper.errorPage;
 const globalPage = helper.globalPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
-const AnswersModel = require('../../app/models/answers-model');
-const SurveyModel = require('../../app/models/survey-model');
+const commonTest = require('./common-survey-tests');
 
 describe('Explore work you could do survey', () => {
   const theType = 'ewycd';
@@ -22,6 +21,10 @@ describe('Explore work you could do survey', () => {
 
   beforeEach(() => dbHelper.cleanDb().then(() =>
     ewycdSurveyPage.visit(theType, theRef)));
+
+  describe('common', () => {
+    commonTest(theType, theRef, 'ewycd-2', aBaseAnswersWith({}), { whyTypes: 'Latest copy ewycd' });
+  });
 
   describe('render', () => {
     const expectedSurveyQuestions = [
@@ -102,40 +105,7 @@ describe('Explore work you could do survey', () => {
     );
   });
 
-  describe('analytics', () => {
-    it('should contain valid google tag manager data', () =>
-      ewycdSurveyPage.visit(theType, theRef).then(() =>
-        expect(globalPage.getGoogleAnalyticsUserVariable()).to.equal('set-me-in-controller')
-      )
-    );
-  });
-
   describe('save', () => {
-    it('should save empty form to database', () =>
-      ewycdSurveyPage.submit()
-        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-        .then(result =>
-          expect(result.data).to.eql(aBaseAnswersWith({}))
-        )
-    );
-
-    it('should save refId and survey type', () =>
-      ewycdSurveyPage.submit()
-        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-        .then(result => {
-          expect(result.ref).to.eql(theRef);
-          expect(result.survey).to.eql(theType);
-        })
-    );
-
-    it('should save survey_id', () =>
-      ewycdSurveyPage.submit()
-        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-        .then(result => {
-          expect(result.survey_id).to.eql('ewycd-2');
-        })
-    );
-
     it('should save "why did you set this" section to database', () => {
       const allWhyTypesValues = [
         'whyTypesStartGoals',
@@ -224,31 +194,6 @@ describe('Explore work you could do survey', () => {
     it('should show confirmation page', () =>
       ewycdSurveyPage.submit()
         .then(() => expect(globalPage.getPageId()).to.eql(confirmationPage.PAGE_ID))
-    );
-  });
-
-  describe('versions', () => {
-    before(() => new SurveyModel({
-      id: 'latest',
-      type: theType,
-      definition: { labels: { whyTypes: 'Latest copy' }, options: {} },
-    }).save(null, { method: 'insert' })
-      .then(() => ewycdSurveyPage.visit(theType, theRef))
-    );
-
-    after(() => new AnswersModel().query({ where: { survey_id: 'latest' } }).destroy()
-      .then(() => new SurveyModel({ id: 'latest' }).destroy()));
-
-    it('should save latest survey_id', () =>
-      ewycdSurveyPage.submit()
-        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-        .then(result => {
-          expect(result.survey_id).to.eql('latest');
-        })
-    );
-
-    it('should render latest survey', () =>
-      expect(ewycdSurveyPage.getQuestionText('whyTypes')).to.eql('Latest copy')
     );
   });
 });
