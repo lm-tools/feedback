@@ -11,6 +11,11 @@ class SurveyPage {
   getQuestionValues() {
     return this.browser.queryAll('[data-test-id^="question-"]').map(el => el.textContent.trim());
   }
+
+  getQuestionText(name) {
+    return this.browser.text(`[data-test-id="question-${name}"]`);
+  }
+
   getText(selector) {
     return this.browser.text(selector);
   }
