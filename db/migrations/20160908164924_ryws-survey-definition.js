@@ -16,8 +16,6 @@ exports.up = (knex) =>
           'understandActivity': ['yes', 'no'],
           'feelPrepared': ['yes', 'no'],
           'providedEnough': ['yes', 'no'],
-          'otherInformation': ['yes', 'no'],
-          'agentFeedback': ['yes', 'no'],
           'rating': ['5', '4', '3', '2', '1'],
         },
         labels: {
