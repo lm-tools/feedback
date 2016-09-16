@@ -21,7 +21,7 @@ router.get('/:type/:ref', (req, res, next) => {
         .then(survey => {
           const options = new OptionsWithLabels(survey.get('definition')).options;
 
-          res.render('survey', {
+          res.render(req.params.type, {
             pageId: 'survey',
             labels: survey.get('definition').labels,
             options,
