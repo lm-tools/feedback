@@ -5,6 +5,7 @@ const screenshots = require('./screenshots');
 const dbHelper = require('./dbHelper');
 const GlobalPage = require('../../common/page_objects/global-page');
 const EWYCDSurveyPage = require('../../common/page_objects/ewycd-survey-page');
+const SurveyPage = require('../../common/page_objects/survey-page');
 const ConfirmationPage = require('../../common/page_objects/confirmation-page');
 const ErrorPage = require('../../common/page_objects/error-page');
 const basePath = process.env.EXPRESS_BASE_PATH || '';
@@ -23,6 +24,7 @@ module.exports = {
   browser,
   globalPage: new GlobalPage(browser, basePath),
   ewycdSurveyPage: new EWYCDSurveyPage(browser, basePath),
+  surveyPage: new SurveyPage(browser, basePath),
   confirmationPage: new ConfirmationPage(browser),
   errorPage: new ErrorPage(browser),
   dbHelper,

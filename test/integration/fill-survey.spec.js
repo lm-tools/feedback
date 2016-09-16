@@ -12,10 +12,6 @@ describe('Explore work you could do survey', () => {
   const theType = 'ewycd';
   const theRef = '12345';
 
-  function fetchFirstAnswersModelFromDB() {
-    return AnswersModel.fetchAll().then(results => results.serialize()[0]);
-  }
-
   function aBaseAnswersWith(additionalFields) {
     return Object.assign({}, {
       whyTypesOtherReason: '',
@@ -104,14 +100,6 @@ describe('Explore work you could do survey', () => {
           expect(errorPage.getMessage()).to.eql('You’ve already given feedback.');
         })
     );
-
-    it('should display 404 if survey not found', () =>
-      ewycdSurveyPage.visit('not-real', theRef)
-        .catch(() => {
-          expect(globalPage.getPageId()).to.eql(errorPage.PAGE_ID);
-          expect(errorPage.getMessage()).to.eql('Page not found');
-        })
-    );
   });
 
   describe('analytics', () => {
@@ -125,7 +113,7 @@ describe('Explore work you could do survey', () => {
   describe('save', () => {
     it('should save empty form to database', () =>
       ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({}))
         )
@@ -133,7 +121,7 @@ describe('Explore work you could do survey', () => {
 
     it('should save refId and survey type', () =>
       ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result => {
           expect(result.ref).to.eql(theRef);
           expect(result.survey).to.eql(theType);
@@ -142,7 +130,7 @@ describe('Explore work you could do survey', () => {
 
     it('should save survey_id', () =>
       ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result => {
           expect(result.survey_id).to.eql('ewycd-2');
         })
@@ -161,7 +149,7 @@ describe('Explore work you could do survey', () => {
       ewycdSurveyPage.fillOtherReason('Other reason');
 
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith(
             {
@@ -182,7 +170,7 @@ describe('Explore work you could do survey', () => {
         otherHelped: 'no',
       });
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith(
             {
@@ -200,7 +188,7 @@ describe('Explore work you could do survey', () => {
     it('should save "Did claimant change" to database', () => {
       ewycdSurveyPage.fillRadios({ claimantChange: 'yes' });
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ claimantChange: 'yes' }))
         );
@@ -209,7 +197,7 @@ describe('Explore work you could do survey', () => {
     it('should save "Claimaint feedback" to database', () => {
       ewycdSurveyPage.fillTextArea('claimantFeedback', 'Some random text');
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ claimantFeedback: 'Some random text' }))
         );
@@ -218,7 +206,7 @@ describe('Explore work you could do survey', () => {
     it('should save "Agent feedback" to database', () => {
       ewycdSurveyPage.fillTextArea('agentFeedback', 'Some agent random text');
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ agentFeedback: 'Some agent random text' }))
         );
@@ -227,7 +215,7 @@ describe('Explore work you could do survey', () => {
     it('should save "Agent rating" to database', () => {
       ewycdSurveyPage.fillRadios({ rating: 3 });
       return ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ rating: '3' }))
         );
@@ -253,14 +241,14 @@ describe('Explore work you could do survey', () => {
 
     it('should save latest survey_id', () =>
       ewycdSurveyPage.submit()
-        .then(() => fetchFirstAnswersModelFromDB())
+        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result => {
           expect(result.survey_id).to.eql('latest');
         })
     );
 
     it('should render latest survey', () =>
-      expect(ewycdSurveyPage.getText(ewycdSurveyPage.QUESTION_WHY_TYPES)).to.eql('Latest copy')
+      expect(ewycdSurveyPage.getQuestionText('whyTypes')).to.eql('Latest copy')
     );
   });
 });
