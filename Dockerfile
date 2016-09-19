@@ -10,13 +10,12 @@ RUN cd $(npm root -g)/npm && \
     npm install fs-extra && \
     sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 
-ADD package.json /srv/app/
-RUN npm install --production
+ADD package.json npm-shrinkwrap.json /srv/app/
+RUN npm install
 
 ADD . /srv/app
 
-RUN npm install && \
-    npm run compile && \
+RUN npm run compile && \
     npm prune --production
 
 ENV NODE_ENV=production
