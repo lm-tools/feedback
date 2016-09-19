@@ -1,6 +1,7 @@
 # Feedback app
 
 [![Build status][build status image]][ci]
+[![Known Vulnerabilities][snyk badge]][snyk project]
 
 A feedback app, based on [express], which looks like [gov.uk]
 
@@ -70,3 +71,5 @@ Check if project has any vulnerabilities by executing `npm run snyk`. For more i
 [heroku deploy image]: https://www.herokucdn.com/deploy/button.svg
 [heroku deploy hook]: https://heroku.com/deploy
 [snyk]: https://snyk.io/
+[snyk badge]: https://snyk.io/test/github/lm-tools/feedback/badge.svg
+[snyk project]: https://snyk.io/test/github/lm-tools/feedback
