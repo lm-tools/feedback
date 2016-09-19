@@ -1,0 +1,131 @@
+{{<layout}}
+
+  {{$applicationContent}}
+
+  <h2 class="heading-xlarge">Give feedback</h2>
+
+  <form method="POST">
+
+    <div class="form-group" id="captureApplication-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-captureApplication">
+          {{labels.captureApplication}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        {{#options.captureApplication}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.captureApplication}}
+
+      </fieldset>
+    </div>
+
+    <div class="form-group" id="understandActivity-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-understandActivity">
+          {{labels.understandActivity}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+        {{#options.understandActivity}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.understandActivity}}
+
+      </fieldset>
+    </div>
+
+    <div class="form-group" id="feelPrepared-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-feelPrepared">
+          {{labels.feelPrepared}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.feelPrepared}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.feelPrepared}}
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <h3 class="form-label-bold text" data-test-id="question-whatExtent">{{labels.whatExtent}}</h3>
+      <fieldset>
+        <legend class="visuallyhidden">{{labels.whatExtent}}</legend>
+        {{#options.whatExtent}}
+          <label class="block-label" for="{{value}}">
+            <input id="{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" type="radio" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.whatExtent}}
+      </fieldset>
+    </div>
+
+
+    <div class="form-group" id="providedEnough-panel">
+      <fieldset class="inline">
+        <legend class="form-label-bold text" data-test-id="question-providedEnough">
+          {{labels.providedEnough}}
+        </legend>
+        <div class="form-hint text radio-hint"> </div>
+        <div class="form-error validation-message"> </div>
+
+         {{#options.providedEnough}}
+          <label for="{{name}}-{{value}}" class="block-label">
+            <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+            {{label}}
+          </label>
+        {{/options.providedEnough}}
+      </fieldset>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label-bold" for="otherInformation" data-test-id="question-otherInformation">
+        {{labels.otherInformation}}
+      </label>
+      <textarea id="otherInformation" data-test-id="otherInformation" class="text textarea-full" rows="6" name="otherInformation"></textarea>
+    </div>
+
+
+    <div class="form-group">
+      <label class="form-label-bold" for="claimantFeedback" data-test-id="question-claimantFeedback">
+        {{labels.claimantFeedback}}
+      </label>
+      <textarea id="claimantFeedback" data-test-id="claimantFeedback" class="text textarea-full" rows="6" name="claimantFeedback"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label-bold" for="agentFeedback" data-test-id="question-agentFeedback">
+        {{labels.agentFeedback}}
+      </label>
+      <textarea id="agentFeedback" data-test-id="agentFeedback" class="text textarea-full" rows="6" name="agentFeedback"></textarea>
+    </div>
+
+
+    <fieldset class="star-rating form-group">
+      <legend>{{labels.rating}}</legend>
+      <div class="rating-options-group rating-options-group-enabled">
+        {{#options.rating}}
+          <input type="radio" id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" value="{{value}}">
+          <label class="full" for="{{name}}-{{value}}"></label>
+        {{/options.rating}}
+      </div>
+    </fieldset>
+
+      <input class="button" type="submit" value="Save">
+    </form>
+
+  {{/applicationContent}}
+
+{{/layout}}

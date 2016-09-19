@@ -5,11 +5,13 @@ const fetchSurveyScript = path.join(__dirname, '..', '..', 'scripts/fetch-survey
 const AnswerModel = require('../../app/models/answers-model');
 const dbHelper = require('./support/dbHelper');
 const expect = require('chai').expect;
+const rywsSurveyDefinition = require('../../db/migrations/20160908164924_ryws-survey-definition')
+  .definition;
 const ewycdSurveyDefinition = require('../../db/migrations/20160908142125_ewycd-2-definition')
   .definition;
 
 [
-  ewycdSurveyDefinition,
+  ewycdSurveyDefinition, rywsSurveyDefinition,
 ].forEach(surveyDefinition => {
   describe(`Fetch "${surveyDefinition.type}" survey`, () => {
     describe(`executing "scripts/fetch-survey.js ${surveyDefinition.id}"`, () => {
