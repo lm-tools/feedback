@@ -59,6 +59,9 @@ Best way to fix it is to delete all the tables in db and redo migrations
     $ NODE_ENV=test node scripts/clear-db.js
     $ NODE_ENV=test npm run db-migrate
 
+## Vulnerabilities
+
+Check if project has any vulnerabilities by executing `npm run snyk`. For more info go to [snyk][snyk]
 
 [build status image]: https://api.travis-ci.org/lm-tools/feedback.svg
 [ci]: https://travis-ci.org/lm-tools/feedback
@@ -66,3 +69,4 @@ Best way to fix it is to delete all the tables in db and redo migrations
 [gov.uk]: https://www.gov.uk/
 [heroku deploy image]: https://www.herokucdn.com/deploy/button.svg
 [heroku deploy hook]: https://heroku.com/deploy
+[snyk]: https://snyk.io/
