@@ -5,3 +5,4 @@ logs/
 screenshots/
 
 npm-debug.log
+*.iml
