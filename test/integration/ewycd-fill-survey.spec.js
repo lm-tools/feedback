@@ -81,7 +81,7 @@ describe('Explore work you could do survey', () => {
       );
 
       it(`should show "${s.question}" when "${s.type}" answer clicked`, () => {
-        ewycdSurveyPage.fillWhyDidYouSetThis([s.type]);
+        ewycdSurveyPage.fillCheckboxes([s.type]);
         return expect(ewycdSurveyPage.isElementHidden(s.selector)).to.eql(false);
       });
     });
@@ -90,7 +90,7 @@ describe('Explore work you could do survey', () => {
     );
 
     it('should show "Other reason" when "Other" answer clicked', () => {
-      ewycdSurveyPage.fillWhyDidYouSetThis(['whyTypesOther']);
+      ewycdSurveyPage.fillCheckboxes(['whyTypesOther']);
       return expect(ewycdSurveyPage.isElementHidden(ewycdSurveyPage.OTHER_REASON_PANEL))
         .to.eql(false);
     });
@@ -115,7 +115,7 @@ describe('Explore work you could do survey', () => {
         'whyTypesSearchTerms',
         'whyTypesOther',
       ];
-      ewycdSurveyPage.fillWhyDidYouSetThis(allWhyTypesValues);
+      ewycdSurveyPage.fillCheckboxes(allWhyTypesValues);
       ewycdSurveyPage.fillOtherReason('Other reason');
 
       return ewycdSurveyPage.submit()

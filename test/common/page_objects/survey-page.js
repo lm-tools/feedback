@@ -20,6 +20,24 @@ class SurveyPage {
     return this.browser.text(selector);
   }
 
+  fillCheckboxes(values) {
+    values.forEach(val => this.browser.check(`[data-test-id="${val}"]`));
+  }
+
+  fillTextArea(name, value) {
+    this.browser.fill(`[data-test-id="${name}"]`, value);
+  }
+
+  fillRadios(radios) {
+    Object.keys(radios)
+      .map(key => ({ k: key, v: radios[key] }))
+      .forEach(field => this.browser.choose(`[data-test-id="${field.k}-${field.v}"]`));
+  }
+
+  isElementHidden(selector) {
+    return this.browser.query(selector).className.split(/\s+/).includes('js-hidden');
+  }
+
   submit() {
     return this.browser.click('[type="submit"]');
   }
