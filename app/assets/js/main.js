@@ -1,4 +1,5 @@
 require('./_hide-show');
+require('./cya-page');
 
 $(document).ready(() => {
   // Use GOV.UK selection-buttons.js to set selected

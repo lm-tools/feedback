@@ -1,0 +1,140 @@
+{{<layout}}
+
+{{$applicationContent}}
+
+<h2 class="heading-xlarge">Give feedback</h2>
+
+<form method="post" data-page-id="cya">
+
+  <!--reason radio-->
+  <div class="form-group">
+    <h3 class="form-label-bold text" data-test-id="question-reason">{{labels.reason}}</h3>
+    <fieldset>
+      <legend class="visuallyhidden">{{labels.reason}}</legend>
+      {{#options.reason}}
+        <label class="block-label" for="{{value}}">
+          <input id="{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" type="radio" value="{{value}}">
+          {{label}}
+        </label>
+      {{/options.reason}}
+
+      <div class="panel panel-border-narrow js-hidden reasonOther-visibility" data-test-id="other-reason-panel">
+        <label for="reasonOtherAnswer" class="form-label">
+          {{labels.reasonOtherReason}}
+        </label>
+        <input type="text" id="reasonOtherAnswer" data-test-id="reasonOtherAnswer" name="reasonOtherReason">
+      </div>
+
+    </fieldset>
+  </div>
+
+  <!-- noSupport yes/no-->
+  <div class="form-group" id="noSupport-panel">
+    <fieldset class="inline">
+      <legend class="form-label-bold text" data-test-id="question-noSupport">
+        {{labels.noSupport}}
+      </legend>
+      <div class="form-hint text radio-hint"> </div>
+      <div class="form-error validation-message"> </div>
+
+      {{#options.noSupport}}
+        <label for="{{name}}-{{value}}" class="block-label">
+          <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+          {{label}}
+        </label>
+      {{/options.noSupport}}
+    </fieldset>
+  </div>
+
+  <!-- alreadyStarted yes/no-->
+  <div class="form-group" id="alreadyStarted-panel">
+    <fieldset class="inline">
+      <legend class="form-label-bold text" data-test-id="question-alreadyStarted">
+        {{labels.alreadyStarted}}
+      </legend>
+      <div class="form-hint text radio-hint"> </div>
+      <div class="form-error validation-message"> </div>
+
+      {{#options.alreadyStarted}}
+        <label for="{{name}}-{{value}}" class="block-label">
+          <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+          {{label}}
+        </label>
+      {{/options.alreadyStarted}}
+    </fieldset>
+  </div>
+
+
+  <!-- reviewMeeting checkboxes-->
+
+  <div class="form-group">
+
+    <h3 class="form-label-bold text" data-test-id="question-reviewMeeting">{{labels.reviewMeeting}}</h3>
+    <p>Select all that apply</p>
+
+    <fieldset>
+
+      <legend class="visuallyhidden">{{labels.reviewMeeting}}</legend>
+
+      {{#options.reviewMeeting}}
+        <label class="block-label" for="{{value}}">
+          <input id="{{value}}" data-test-id="{{value}}" name="{{name}}" type="checkbox" value="{{value}}">
+          {{label}}
+        </label>
+      {{/options.reviewMeeting}}
+
+
+    </fieldset>
+  </div>
+
+  <!-- claimantChange yes/no -->
+  <div class="form-group">
+    <fieldset class="inline">
+      <legend class="form-label-bold text" data-test-id="question-claimantChange">
+        {{labels.claimantChange}}
+      </legend>
+      <div class="form-hint text radio-hint"> </div>
+      <div class="form-error validation-message"> </div>
+
+      {{#options.claimantChange}}
+        <label for="{{name}}-{{value}}" class="block-label">
+          <input id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" type="radio" name="{{name}}" value="{{value}}">
+          {{label}}
+        </label>
+      {{/options.claimantChange}}
+
+    </fieldset>
+  </div>
+
+  <!-- claimantFeedback -->
+  <div class="form-group">
+    <label class="form-label-bold" for="claimantFeedback" data-test-id="question-claimantFeedback">
+      {{labels.claimantFeedback}}
+    </label>
+    <textarea id="claimantFeedback" data-test-id="claimantFeedback" class="text textarea-full" rows="6" name="claimantFeedback"></textarea>
+  </div>
+
+  <!-- agentFeedback -->
+  <div class="form-group">
+    <label class="form-label-bold" for="agentFeedback" data-test-id="question-agentFeedback">
+      {{labels.agentFeedback}}
+    </label>
+    <textarea id="agentFeedback" data-test-id="agentFeedback" class="text textarea-full" rows="6" name="agentFeedback"></textarea>
+  </div>
+
+
+  <fieldset class="star-rating form-group">
+    <legend data-test-id="question-rating">{{labels.rating}}</legend>
+    <div class="rating-options-group rating-options-group-enabled">
+      {{#options.rating}}
+        <input type="radio" id="{{name}}-{{value}}" data-test-id="{{name}}-{{value}}" name="{{name}}" value="{{value}}">
+        <label class="full" for="{{name}}-{{value}}"></label>
+      {{/options.rating}}
+    </div>
+  </fieldset>
+
+  <input class="button" type="submit" value="Save">
+</form>
+{{/applicationContent}}
+
+{{/layout}}

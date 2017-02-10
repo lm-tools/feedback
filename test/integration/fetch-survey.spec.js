@@ -9,9 +9,11 @@ const rywsSurveyDefinition = require('../../db/migrations/20160908164924_ryws-su
   .definition;
 const ewycdSurveyDefinition = require('../../db/migrations/20160908142125_ewycd-2-definition')
   .definition;
+const cyaSurveyDefinition = require('../../db/migrations/20170210111030_cya-definition')
+  .definition;
 
 [
-  ewycdSurveyDefinition, rywsSurveyDefinition,
+  ewycdSurveyDefinition, rywsSurveyDefinition, cyaSurveyDefinition,
 ].forEach(surveyDefinition => {
   describe(`Fetch "${surveyDefinition.type}" survey`, () => {
     describe(`executing "scripts/fetch-survey.js ${surveyDefinition.id}"`, () => {
