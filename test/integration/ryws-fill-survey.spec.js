@@ -1,5 +1,5 @@
 const helper = require('./support/integrationSpecHelper');
-const ewycdSurveyPage = helper.ewycdSurveyPage;
+const surveyPage = helper.surveyPage;
 const dbHelper = helper.dbHelper;
 const expect = require('chai').expect;
 const commonTest = require('./common-survey-tests');
@@ -17,7 +17,7 @@ describe('Record your work search survey', () => {
   }
 
   beforeEach(() => dbHelper.cleanDb().then(() =>
-    ewycdSurveyPage.visit(theType, theRef)));
+    surveyPage.visit(theType, theRef)));
 
   describe('common', () => {
     commonTest(theType, theRef, 'ryws-1', aBaseAnswersWith({}), { whatExtent: 'Latest copy ryws' });
@@ -39,15 +39,15 @@ describe('Record your work search survey', () => {
     ];
 
     it('should render all survey questions', () => {
-      expect(ewycdSurveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
+      expect(surveyPage.getQuestionValues()).to.eql(expectedSurveyQuestions);
     });
   });
 
   describe('save', () => {
     ['whatExtentDidnt', 'whatExtentUsed', 'whatExtentQuite', 'whatExtentVery'].forEach(answer => {
       it(`should save "WhatExtent" answer "${answer}" to database'`, () => {
-        ewycdSurveyPage.fillRadios({ whatExtent: answer });
-        return ewycdSurveyPage.submit()
+        surveyPage.fillRadios({ whatExtent: answer });
+        return surveyPage.submit()
           .then(() => dbHelper.fetchFirstAnswersModelFromDB())
           .then(result =>
             expect(result.data).to.eql(aBaseAnswersWith(
@@ -66,8 +66,8 @@ describe('Record your work search survey', () => {
       { providedEnough: 'no' },
     ].forEach(s => {
       it(`should save "${Object.keys(s)[0]}" answer`, () => {
-        ewycdSurveyPage.fillRadios(s);
-        return ewycdSurveyPage.submit()
+        surveyPage.fillRadios(s);
+        return surveyPage.submit()
           .then(() => dbHelper.fetchFirstAnswersModelFromDB())
           .then(result =>
             expect(result.data).to.eql(aBaseAnswersWith(s))
@@ -83,8 +83,8 @@ describe('Record your work search survey', () => {
       const key = Object.keys(s)[0];
 
       it(`should save "${key}" to database`, () => {
-        ewycdSurveyPage.fillTextArea(key, s[key]);
-        return ewycdSurveyPage.submit()
+        surveyPage.fillTextArea(key, s[key]);
+        return surveyPage.submit()
           .then(() => dbHelper.fetchFirstAnswersModelFromDB())
           .then(result =>
             expect(result.data).to.eql(aBaseAnswersWith(s))
@@ -94,8 +94,8 @@ describe('Record your work search survey', () => {
 
 
     it('should save "Agent rating" to database', () => {
-      ewycdSurveyPage.fillRadios({ rating: 2 });
-      return ewycdSurveyPage.submit()
+      surveyPage.fillRadios({ rating: 2 });
+      return surveyPage.submit()
         .then(() => dbHelper.fetchFirstAnswersModelFromDB())
         .then(result =>
           expect(result.data).to.eql(aBaseAnswersWith({ rating: '2' }))
