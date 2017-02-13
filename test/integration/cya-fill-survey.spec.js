@@ -30,7 +30,7 @@ describe('Choose your activities survey', () => {
       'Why did you set this to-do for the claimant?',
       'Was the claimant able to use the tool without support?',
       'Did the claimant start any of the activities before your next meeting?',
-      'At your review meeting with the claimant following their using the tool did you:',
+      'At your review meeting with the claimant after they used the tool, did you:',
       'After using this tool, has the claimant changed how they search or prepare for work?',
       'What feedback has the claimant given you about this tool?',
       'What feedback would you like to give about this tool?',
