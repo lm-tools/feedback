@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const surveyController = require('./controllers/survey-controller');
 const i18nMiddleware = require('./middleware/i18n');
-const i18n = require('i18n');
+const errorHandler = require('./middleware/error-handler');
 const healthCheckController = require('./controllers/health-check-controller');
 
 const app = express();
@@ -85,21 +85,6 @@ app.use((err, req, res, next) => {
   next(err);
 });
 
-/* eslint-disable no-underscore-dangle */
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  if (app.get('env') !== 'test') {
-    // eslint-disable-next-line no-console
-    console.error(err.stack);
-  }
-  const status = err.status || 500;
-  res.status(status);
-  const model = { message: i18n.__(`error.${status}`), pageId: 'error-page' };
-  if (app.get('env') === 'development') {
-    model.error = err;
-  }
-  res.render('error', model);
-});
-
+errorHandler(app);
 
 module.exports = app;
