@@ -1,5 +1,6 @@
 /* eslint-disable quote-props, max-len */
 const childProcess = require('child_process');
+const moment = require('moment');
 const path = require('path');
 const fetchSurveyScript = path.join(__dirname, '..', '..', 'scripts/fetch-survey.js');
 const AnswerModel = require('../../app/models/answers-model');
@@ -11,6 +12,7 @@ const ewycdSurveyDefinition = require('../../db/migrations/20160908142125_ewycd-
   .definition;
 const cyaSurveyDefinition = require('../../db/migrations/20170210111030_cya-definition')
   .definition;
+const expectedDateFormat = 'YYYY-MM-DD HH:mm:ss';
 
 [
   ewycdSurveyDefinition, rywsSurveyDefinition, cyaSurveyDefinition,
@@ -50,7 +52,11 @@ const cyaSurveyDefinition = require('../../db/migrations/20170210111030_cya-defi
       it('should return answers', () => {
         expect(JSON.parse(result.stdout)).to.have.property('answers').that.eql(
           [
-            Object.assign({}, sampleAnswers.data, { refId: sampleAnswers.ref }),
+            Object.assign({},
+              sampleAnswers.data,
+              { refId: sampleAnswers.ref },
+              { createdAt: moment().format(expectedDateFormat) }
+              ),
           ]
         );
       });
