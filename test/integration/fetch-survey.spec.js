@@ -3,7 +3,6 @@ const childProcess = require('child_process');
 const moment = require('moment');
 const path = require('path');
 const fetchSurveyScript = path.join(__dirname, '..', '..', 'scripts/fetch-survey.js');
-const AnswerModel = require('../../app/models/answers-model');
 const dbHelper = require('./support/dbHelper');
 const expect = require('chai').expect;
 const rywsSurveyDefinition = require('../../db/migrations/20160908164924_ryws-survey-definition')
@@ -13,6 +12,7 @@ const ewycdSurveyDefinition = require('../../db/migrations/20160908142125_ewycd-
 const cyaSurveyDefinition = require('../../db/migrations/20170210111030_cya-definition')
   .definition;
 const expectedDateFormat = 'YYYY-MM-DD HH:mm:ss';
+const sampleDate = new Date('2017-01-31 12:30:25');
 
 [
   ewycdSurveyDefinition, rywsSurveyDefinition, cyaSurveyDefinition,
@@ -25,12 +25,14 @@ const expectedDateFormat = 'YYYY-MM-DD HH:mm:ss';
         data: {
           some: 'data',
         },
+        created_at: sampleDate,
       };
+
       let result;
       before(() =>
         dbHelper.cleanDb()
-          .then(() => new AnswerModel(sampleAnswers).save()
-          ).then(() => {
+          .then(() => dbHelper.createAnswersInDb(sampleAnswers))
+          .then(() => {
             result = childProcess.spawnSync(fetchSurveyScript, [surveyDefinition.id]);
           })
       );
@@ -55,8 +57,8 @@ const expectedDateFormat = 'YYYY-MM-DD HH:mm:ss';
             Object.assign({},
               sampleAnswers.data,
               { refId: sampleAnswers.ref },
-              { createdAt: moment().format(expectedDateFormat) }
-              ),
+              { createdAt: moment(sampleAnswers.created_at).format(expectedDateFormat) }
+            ),
           ]
         );
       });

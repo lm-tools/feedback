@@ -10,5 +10,8 @@ module.exports = {
   fetchFirstAnswersModelFromDB() {
     return AnswersModel.fetchAll().then(results => results.serialize()[0]);
   },
+  createAnswersInDb(answers) {
+    return knex('answers').insert(answers);
+  },
 
 };

@@ -28,7 +28,7 @@ new SurveyModel({ id: surveyId }).fetch({ withRelated: ['answers'] })
       options: surveyDefinition.options,
       answers: answers.map(answer =>
         Object.assign({}, answer.data, { refId: answer.ref },
-          { createdAt: moment().format('YYYY-MM-DD HH:mm:ss') })),
+          { createdAt: moment(answer.created_at).format('YYYY-MM-DD HH:mm:ss') })),
     });
 
     console.log(output);
