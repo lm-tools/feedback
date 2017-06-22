@@ -4,6 +4,11 @@ const program = require('commander');
 const moment = require('moment');
 const SurveyModel = require('../app/models/survey-model');
 let surveyId;
+
+function thenExit() {
+  process.exit(0);
+}
+
 program
   .arguments('<surveyId>')
   .action(id => {
@@ -11,18 +16,15 @@ program
   })
   .parse(process.argv);
 
-
 if (typeof surveyId === 'undefined') {
   console.error('no surveyId given');
   process.exit(1);
 }
 
-
 new SurveyModel({ id: surveyId }).fetch({ withRelated: ['answers'] })
   .then(result => {
     const surveyDefinition = result.get('definition');
     const answers = result.related('answers').serialize();
-
     const output = JSON.stringify({
       labels: surveyDefinition.labels,
       options: surveyDefinition.options,
@@ -31,8 +33,7 @@ new SurveyModel({ id: surveyId }).fetch({ withRelated: ['answers'] })
           { createdAt: moment(answer.created_at).format('YYYY-MM-DD HH:mm:ss') })),
     });
 
-    console.log(output);
-    process.exit(0);
+    process.stdout.write(output, thenExit);
   })
   .catch(err => {
     console.error(err);
