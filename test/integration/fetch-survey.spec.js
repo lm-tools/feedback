@@ -14,54 +14,77 @@ const cyaSurveyDefinition = require('../../db/migrations/20170210111030_cya-defi
 const expectedDateFormat = 'YYYY-MM-DD HH:mm:ss';
 const sampleDate = new Date('2017-01-31 12:30:25');
 
-[
-  ewycdSurveyDefinition, rywsSurveyDefinition, cyaSurveyDefinition,
-].forEach(surveyDefinition => {
-  describe(`Fetch "${surveyDefinition.type}" survey`, () => {
-    describe(`executing "scripts/fetch-survey.js ${surveyDefinition.id}"`, () => {
-      const sampleAnswers = {
-        survey_id: surveyDefinition.id,
-        ref: surveyDefinition.type,
-        data: {
-          some: 'data',
-        },
-        created_at: sampleDate,
-      };
+function mockFeedbackEntry(surveyDefinition) {
+  return ({
+    survey_id: surveyDefinition.id,
+    ref: surveyDefinition.type,
+    data: {
+      some: 'some data',
+    },
+    created_at: sampleDate,
+  });
+}
 
-      let result;
-      before(() =>
-        dbHelper.cleanDb()
-          .then(() => dbHelper.createAnswersInDb(sampleAnswers))
-          .then(() => {
-            result = childProcess.spawnSync(fetchSurveyScript, [surveyDefinition.id]);
-          })
-      );
+describe('Fetch Survey', () => {
+  [
+    ewycdSurveyDefinition, rywsSurveyDefinition, cyaSurveyDefinition,
+  ].forEach(surveyDefinition => {
+    describe(`Fetch "${surveyDefinition.type}" survey`, () => {
+      describe(`executing "scripts/fetch-survey.js ${surveyDefinition.id}"`, () => {
+        let result;
+        const sampleFeedback = mockFeedbackEntry(surveyDefinition);
 
-      it('should execute without error', () => {
-        expect(result.status).to.eql(0);
-      });
-
-      it('should return labels for all the questions', () => {
-        expect(JSON.parse(result.stdout)).to.have.property('labels').that
-          .include.keys(Object.keys(surveyDefinition.definition.labels));
-      });
-
-      it('should return predefined options', () => {
-        expect(JSON.parse(result.stdout)).to.have.property('options')
-          .that.eql(surveyDefinition.definition.options);
-      });
-
-      it('should return answers', () => {
-        expect(JSON.parse(result.stdout)).to.have.property('answers').that.eql(
-          [
-            Object.assign({},
-              sampleAnswers.data,
-              { refId: sampleAnswers.ref },
-              { createdAt: moment(sampleAnswers.created_at).format(expectedDateFormat) }
-            ),
-          ]
+        before(() =>
+          dbHelper.cleanDb()
+            .then(() => dbHelper.createAnswersInDb(sampleFeedback))
+            .then(() => {
+              result = childProcess.spawnSync(fetchSurveyScript, [surveyDefinition.id]);
+            })
         );
+
+        it('should execute without error', () => {
+          expect(result.status).to.eql(0);
+        });
+
+        it('should return labels for all the questions', () => {
+          expect(JSON.parse(result.stdout)).to.have.property('labels').that
+            .include.keys(Object.keys(surveyDefinition.definition.labels));
+        });
+
+        it('should return predefined options', () => {
+          expect(JSON.parse(result.stdout)).to.have.property('options')
+            .that.eql(surveyDefinition.definition.options);
+        });
+
+        it('should return answers', () => {
+          expect(JSON.parse(result.stdout)).to.have.property('answers').that.eql(
+            [
+              Object.assign({},
+                sampleFeedback.data,
+                { refId: sampleFeedback.ref },
+                { createdAt: moment(sampleFeedback.created_at).format(expectedDateFormat) }
+              ),
+            ]
+          );
+        });
       });
     });
+  });
+
+  describe('Should manage a lot of feedback', () => {
+    let result;
+    const noOfFeedbackEntries = 5000;
+
+    before(() =>
+      dbHelper.cleanDb()
+        .then(() => dbHelper.createAnswersInDb(mockFeedbackEntry(ewycdSurveyDefinition), noOfFeedbackEntries))
+        .then(() => {
+          result = childProcess.spawnSync(fetchSurveyScript, [ewycdSurveyDefinition.id]);
+        })
+    );
+
+    it('should return the correct number of feedback records', () =>
+      expect(JSON.parse(result.stdout).answers.length).to.equal(noOfFeedbackEntries)
+    );
   });
 });
