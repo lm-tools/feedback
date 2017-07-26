@@ -16,7 +16,7 @@ const definition = {
       'agentInToolOrJournal': 'Do you prefer to review a claimant’s work search in the tool or in the journal?',
       'agentInToolOrJournalWhy': 'Why?',
       'claimantInToolOrJournal': 'Does the claimant prefer to record their work search in the tool or in the journal?',
-      'wasItHelpful': 'How much did this tool help you and the claimant have a better work search review?',
+      'wasItHelpful': 'Did this tool help you and the claimant have a better work search review?',
       'otherInformation': 'Do you have any other feedback about this tool?',
       'yes': 'Yes',
       'no': 'No',

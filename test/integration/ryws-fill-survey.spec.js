@@ -30,7 +30,7 @@ describe('Record your work search survey', () => {
       'Does the timeline give a useful summary of a claimant’s work search?',
       'Do you prefer to review a claimant’s work search in the tool or in the journal?',
       'Does the claimant prefer to record their work search in the tool or in the journal?',
-      'How much did this tool help you and the claimant have a better work search review?',
+      'Did this tool help you and the claimant have a better work search review?',
       'Do you have any other feedback about this tool?',
     ];
 
