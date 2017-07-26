@@ -10,8 +10,7 @@ describe('Record your work search survey', () => {
 
   function aBaseAnswersWith(additionalFields) {
     return Object.assign({}, {
-      agentFeedback: '',
-      claimantFeedback: '',
+      agentInToolOrJournalWhy: '',
       otherInformation: '',
     }, additionalFields);
   }
@@ -20,22 +19,19 @@ describe('Record your work search survey', () => {
     surveyPage.visit(theType, theRef)));
 
   describe('common', () => {
-    commonTest(theType, theRef, 'ryws-1', aBaseAnswersWith({}), { whatExtent: 'Latest copy ryws' });
+    commonTest(theType, theRef, 'ryws-2', aBaseAnswersWith({}),
+      { otherInformation: 'Latest copy ryws' }
+    );
   });
 
   describe('render', () => {
     const expectedSurveyQuestions = [
-      'Does the job application tracker collect the job application information you need?',
-      'By itself, does the job application tracker tell you what job application ' +
-      'activity your claimant has done?',
-      'Would you feel prepared for the work search review if you only used the information f' +
-      'rom the job application tracker?',
-      'Did the job application tracker help focus the conversation with your claimant?',
-      'Is the information from the job application tracker enough to identify actions or advice ' +
-      'for claimants on what to do next?',
-      'What other information would you like to see?',
-      'What feedback have you received from claimants using the tracker?',
-      'What other feedback would you like to give us?',
+      'Does the job list give you an at-a-glance overview of all the claimant’s applications?',
+      'Does the timeline give a useful summary of a claimant’s work search?',
+      'Do you prefer to review a claimant’s work search in the tool or in the journal?',
+      'Does the claimant prefer to record their work search in the tool or in the journal?',
+      'How much did this tool help you and the claimant have a better work search review?',
+      'Do you have any other feedback about this tool?',
     ];
 
     it('should render all survey questions', () => {
@@ -44,41 +40,33 @@ describe('Record your work search survey', () => {
   });
 
   describe('save', () => {
-    ['whatExtentDidnt', 'whatExtentUsed', 'whatExtentQuite', 'whatExtentVery'].forEach(answer => {
-      it(`should save "WhatExtent" answer "${answer}" to database'`, () => {
-        surveyPage.fillRadios({ whatExtent: answer });
-        return surveyPage.submit()
-          .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-          .then(result =>
-            expect(result.data).to.eql(aBaseAnswersWith(
-              {
-                whatExtent: answer,
-              }
-            ))
-          );
-      });
-    });
-
     [
-      { captureApplication: 'yes' },
-      { understandActivity: 'no' },
-      { feelPrepared: 'yes' },
-      { providedEnough: 'no' },
+      { field: 'atGlance', options: ['yes', 'no', 'notSure'] },
+      { field: 'usefulSummary', options: ['yes', 'no', 'notSure'] },
+      { field: 'agentInToolOrJournal', options: ['tool', 'journal', 'notSure'] },
+      { field: 'claimantInToolOrJournal', options: ['tool', 'journal', 'notSure'] },
+      { field: 'wasItHelpful', options: ['1', '2', '3', '4', '5'] },
     ].forEach(s => {
-      it(`should save "${Object.keys(s)[0]}" answer`, () => {
-        surveyPage.fillRadios(s);
-        return surveyPage.submit()
-          .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-          .then(result =>
-            expect(result.data).to.eql(aBaseAnswersWith(s))
-          );
+      s.options.forEach(option => {
+        it(`should save "${s.field}" answer "${option}" to database'`, () => {
+          const form = {};
+          form[s.field] = option;
+          surveyPage.fillRadios(form);
+          return surveyPage.submit()
+            .then(() => dbHelper.fetchFirstAnswersModelFromDB())
+            .then(result =>
+              expect(result.data).to.eql(aBaseAnswersWith(
+                form
+              ))
+            );
+        });
       });
     });
 
+
     [
+      { agentInToolOrJournalWhy: 'Value for text area agentInToolOrJournalWhy' },
       { otherInformation: 'Value for text area otherInformation' },
-      { claimantFeedback: 'Value for text area claimantFeedback' },
-      { agentFeedback: 'Value for text area agentFeedback' },
     ].forEach(s => {
       const key = Object.keys(s)[0];
 
@@ -90,16 +78,6 @@ describe('Record your work search survey', () => {
             expect(result.data).to.eql(aBaseAnswersWith(s))
           );
       });
-    });
-
-
-    it('should save "Agent rating" to database', () => {
-      surveyPage.fillRadios({ rating: 2 });
-      return surveyPage.submit()
-        .then(() => dbHelper.fetchFirstAnswersModelFromDB())
-        .then(result =>
-          expect(result.data).to.eql(aBaseAnswersWith({ rating: '2' }))
-        );
     });
   });
 });
