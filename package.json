@@ -7,7 +7,7 @@
     "compile": "gulp js css",
     "watch": "gulp watch",
     "lint": "eslint .",
-    "pretest": "npm-shrinkwrap-check -3 && eslint . && npm run compile && NODE_ENV=test npm run db-migrate",
+    "pretest": "eslint . && npm run compile && NODE_ENV=test npm run db-migrate",
     "test": "NODE_ENV=test mocha && echo 'Tests against app mounted at /feedback:' && EXPRESS_BASE_PATH=/feedback NODE_ENV=test mocha",
     "snyk": "snyk test",
     "db-migrate": "knex migrate:latest --knexfile db/knexfile.js",
@@ -61,7 +61,6 @@
     "gulp-util": "^3.0.7",
     "knex-cleaner": "^1.1.3",
     "mocha": "^2.4.5",
-    "npm-shrinkwrap-check": "git+https://git@github.com/gjvis/npm-shrinkwrap-check.git#ignore-nested-package-json-files",
     "snyk": "^1.19.1",
     "vinyl-source-stream": "^1.1.0",
     "zombie": "^4.2.1"
