@@ -20,7 +20,7 @@
     "included so that they are available in the Heroku build pipeline"
   ],
   "dependencies": {
-    "body-parser": "~1.13",
+    "body-parser": "~1.18.2",
     "bookshelf": "^0.9.5",
     "commander": "^2.9.0",
     "consolidate": "~0.14",
@@ -40,7 +40,7 @@
     "pg": "^4.5.5",
     "regenerator-transform": "^0.9.8",
     "safe-buffer": "^5.0.1",
-    "serve-favicon": "~2.3",
+    "serve-favicon": "~2.4.5",
     "uuid": "^3.1.0",
     "winston": "^2.2.0"
   },
