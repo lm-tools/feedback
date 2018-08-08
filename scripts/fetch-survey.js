@@ -17,8 +17,8 @@ if (typeof surveyId === 'undefined') {
 }
 
 surveyById(surveyId)
-  .then(surveyResult => process.stdout.write(surveyResult, () => process.exit(0)))
-  .then(() => process.exit(0))
+  // adding a second argument to terminate process allows the write to complete before process exits
+  .then(surveyResult => process.stdout.write(JSON.stringify(surveyResult), () => process.exit(0)))
   .catch(e => {
     console.error(e);
     process.exit(1);
