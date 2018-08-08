@@ -38,7 +38,7 @@ describe('Fetch Survey', () => {
           dbHelper.cleanDb()
             .then(() => dbHelper.createAnswersInDb(sampleFeedback))
             .then(() => {
-              result = childProcess.spawnSync(fetchSurveyScript, [surveyDefinition.id]);
+              result = childProcess.spawnSync(fetchSurveyScript, [surveyDefinition.id], { encoding: 'utf8' });
             })
         );
 
@@ -79,7 +79,7 @@ describe('Fetch Survey', () => {
       dbHelper.cleanDb()
         .then(() => dbHelper.createAnswersInDb(mockFeedbackEntry(ewycdSurveyDefinition), noOfFeedbackEntries))
         .then(() => {
-          result = childProcess.spawnSync(fetchSurveyScript, [ewycdSurveyDefinition.id]);
+          result = childProcess.spawnSync(fetchSurveyScript, [ewycdSurveyDefinition.id], { encoding: 'utf8' });
         })
     );
 
