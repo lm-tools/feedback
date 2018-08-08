@@ -5,10 +5,9 @@ const logger = require('./../logger');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const surveyController = require('./controllers/survey-controller');
+const controllers = require('./controllers');
 const i18nMiddleware = require('./middleware/i18n');
 const errorHandler = require('./middleware/error-handler');
-const healthCheckController = require('./controllers/health-check-controller');
 
 const app = express();
 i18nMiddleware(app);
@@ -24,8 +23,8 @@ const basePath = app.locals.basePath = process.env.EXPRESS_BASE_PATH || '';
 const assetPath = `${basePath}/`;
 const googleTagManagerId = process.env.GOOGLE_TAG_MANAGER_ID;
 
-app.use('/health_check', healthCheckController);
-app.use(`${basePath}/health_check`, healthCheckController);
+app.use('/health_check', controllers.healthCheck);
+app.use(`${basePath}/health_check`, controllers.healthCheck);
 
 // Middleware to set default layouts.
 // This must be done per request (and not via app.locals) as the Consolidate.js
@@ -61,12 +60,14 @@ app.use(assetPath, express.static(path.join(__dirname, '..', 'dist', 'public')))
 app.use(assetPath, express.static(path.join(__dirname, '..',
   'vendor', 'govuk_template_mustache_inheritance', 'assets')));
 
-
-app.use(`${basePath}/`, surveyController);
-
-if (app.get('env') === 'development' || app.get('env') === 'test') {
-  // eslint-disable-next-line global-require
-  app.use(`${basePath}/test/error`, require('./controllers/test-controller'));
+if (process.env.MI === 'true' || process.env.MI === true) {
+  app.use(`${basePath}/metrics`, controllers.metrics);
+} else {
+  app.use(`${basePath}/`, controllers.survey);
+  if (app.get('env') === 'development' || app.get('env') === 'test') {
+    // eslint-disable-next-line global-require
+    app.use(`${basePath}/test/error`, require('./controllers/test-controller'));
+  }
 }
 
 // catch 404 and forward to error handler
