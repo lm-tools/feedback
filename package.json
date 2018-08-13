@@ -21,7 +21,7 @@
     "included so that they are available in the Heroku build pipeline"
   ],
   "dependencies": {
-    "body-parser": "~1.13",
+    "body-parser": "~1.17.1",
     "bookshelf": "^0.9.5",
     "commander": "^2.9.0",
     "consolidate": "~0.14",
