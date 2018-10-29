@@ -43,7 +43,7 @@
     "pg": "^4.5.5",
     "regenerator-transform": "^0.9.8",
     "safe-buffer": "^5.0.1",
-    "serve-favicon": "~2.3",
+    "serve-favicon": "~2.4.5",
     "uuid": "^3.1.0",
     "winston": "^2.2.0"
   },
