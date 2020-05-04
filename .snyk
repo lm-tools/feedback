@@ -1,3 +1,18 @@
-version: v1.5.2
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
 ignore: {}
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-04T06:50:31.765Z'
+    - knex > lodash:
+        patched: '2020-05-04T06:50:31.765Z'
+    - regenerator-transform > babel-types > lodash:
+        patched: '2020-05-04T06:50:31.765Z'
+    - lmt-utils > html-link-crawler > cheerio > lodash:
+        patched: '2020-05-04T06:50:31.765Z'
+    - lmt-utils > lint-target-blank > cheerio > lodash:
+        patched: '2020-05-04T06:50:31.765Z'
+    - lmt-utils > html-link-crawler > simplecrawler > async > lodash:
+        patched: '2020-05-04T06:50:31.765Z'
