@@ -1,4 +1,6 @@
-# Feedback app
+# Feedback app - deprecated
+
+*This application is no longer in use and is not maintained*
 
 [![Build status][build status image]][ci]
 [![Known Vulnerabilities][snyk badge]][snyk project]
